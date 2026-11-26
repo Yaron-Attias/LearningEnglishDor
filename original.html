@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>All About Japan – Vocabulary</title>
+<style>
+/*
+VOICE: playful, encouraging, kid-friendly game for 6th graders; clear and big.
+IDEA: a train journey across Japan – every activity is a station on the line.
+PICTURE: Mount Fuji with the red sun in the header; the station map is the menu.
+COLOUR and TYPE: Japanese red dominant, sakura pink support, indigo accent; Zen Maru Gothic + Nunito, Rubik for Hebrew.
+LAYOUT: header band, station map grid, one activity panel at a time, sticky score bar.
+*/
+:root{color-scheme:light dark;
+--bg:light-dark(#fffafc,#17151c);--ink:light-dark(#1d1b22,#f3f0f4);--soft:light-dark(#6b6572,#b6afbb);
+--red:#f25a74;--red2:light-dark(#c93a55,#ff8fa3);--pink:light-dark(#ffeef2,#3a2229);--pink2:light-dark(#ffc3d0,#6d3443);
+--indigo:light-dark(#5a6fd8,#a9b8ff);--card:light-dark(#ffffff,#1f1d26);--line:light-dark(#ebe4e8,#36323d);
+--ok:light-dark(#178a4a,#4fd28a);--okbg:light-dark(#e2f6ea,#163626);--bad:light-dark(#c8102e,#ff6b7f);--badbg:light-dark(#fde6ea,#3d1a21)}
+:root[data-theme=light]{color-scheme:light}:root[data-theme=dark]{color-scheme:dark}
+*{box-sizing:border-box;min-width:0}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.55 Nunito,system-ui,sans-serif;overflow-x:clip}
+h1,h2,h3{font-family:"Zen Maru Gothic",Nunito,sans-serif;line-height:1.1;margin:0;text-wrap:balance}
+.he{font-family:Rubik,Arial,sans-serif;direction:rtl;unicode-bidi:isolate}
+button{font:inherit;color:inherit;cursor:pointer}
+button:focus-visible,input:focus-visible{outline:3px solid var(--indigo);outline-offset:2px}
+header{background:linear-gradient(160deg,#ffe0e8 0%,#fff1e4 55%,#e6f3ff 100%);color:#3b2a35;position:relative;overflow:hidden}header h1{color:#e0435f}
+.hwrap{max-width:1180px;margin:auto;padding:clamp(22px,4vw,44px) max(5vw,16px) 0;display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:20px;align-items:end}
+header h1{font-size:clamp(34px,5.4vw,56px);font-weight:900}
+header .sub{font-weight:700;opacity:.92;margin:10px 0 6px;font-size:18px}
+header .he{font-size:17px;margin:0 0 22px}
+.fuji{width:100%;height:auto;display:block;max-height:230px}
+.bar{position:sticky;top:0;z-index:20;background:var(--bg);border-bottom:2px solid var(--line)}
+.barin{max-width:1180px;margin:auto;padding:8px max(5vw,16px);display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.pill{display:inline-flex;align-items:center;gap:6px;padding:6px 14px;border-radius:99px;background:var(--pink);font-weight:800;white-space:nowrap}
+.pill b{color:var(--red2);font-size:19px}
+.grow{flex:1}
+.btn{border:0;border-radius:14px;padding:11px 20px;min-height:44px;font-weight:800;background:var(--red);color:#fff;box-shadow:0 3px 0 var(--red2)}
+.btn:active{transform:translateY(2px);box-shadow:none}
+.btn.ghost{background:var(--card);color:var(--ink);box-shadow:0 3px 0 var(--line);border:2px solid var(--line)}
+.btn.indigo{background:var(--indigo);color:var(--bg);box-shadow:none}
+main{max-width:1180px;margin:auto;padding:clamp(22px,3vw,40px) max(5vw,16px) 60px}
+.lead{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:18px}
+.lead h2{font-size:clamp(26px,3.4vw,36px)}
+.map{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:16px;position:relative}
+.st{position:relative;text-align:start;background:var(--card);border:2px solid var(--line);border-radius:22px;padding:18px 18px 16px;display:grid;grid-template-columns:62px minmax(0,1fr);gap:4px 14px;align-items:start;transition:transform .15s,border-color .15s}
+.st:nth-child(6n+1){background:light-dark(#fff0f4,#2a1f26)}.st:nth-child(6n+2){background:light-dark(#e9f8f0,#1c2a24)}.st:nth-child(6n+3){background:light-dark(#eaf3ff,#1d2533)}.st:nth-child(6n+4){background:light-dark(#fff8dc,#2c2818)}.st:nth-child(6n+5){background:light-dark(#f2ebff,#251f33)}.st:nth-child(6n){background:light-dark(#ffefe4,#2e221b)}
+.st:hover{transform:translateY(-3px);border-color:var(--pink2)}
+.st .ic{grid-row:span 3;width:62px;height:62px;border-radius:50%;background:light-dark(#fff,#2b2833);display:grid;place-items:center;box-shadow:0 3px 0 rgba(0,0,0,.06)}.st .ic svg{width:46px;height:46px}.st:hover .ic svg{animation:wig .5s}@keyframes wig{30%{transform:rotate(-10deg)}70%{transform:rotate(8deg)}}
+.st .no{font-size:13px;font-weight:800;color:var(--red2)}
+.st h3{font-size:20px}
+.st .he{font-size:15px;color:var(--soft)}
+.stars{grid-column:2;letter-spacing:3px;font-size:20px;color:var(--line);margin-top:4px}
+.stars .on{color:#f2b705}
+.panel{position:relative;overflow:hidden;background:var(--card);border:2px solid var(--line);border-radius:26px;padding:clamp(18px,3vw,34px) clamp(18px,3vw,34px) 0}
+.panel>*{position:relative;z-index:1}
+.deco{position:absolute!important;z-index:0!important;width:120px;height:120px;top:-14px;inset-inline-end:-10px;opacity:.9;transform:rotate(12deg);pointer-events:none}
+.ptop{padding-inline-end:90px}
+.petal{position:absolute!important;z-index:0!important;width:22px;height:22px;opacity:.55;pointer-events:none;animation:drift 9s ease-in-out infinite}
+@keyframes drift{0%,100%{transform:translate(0,0) rotate(0)}50%{transform:translate(14px,18px) rotate(60deg)}}
+.belt{margin:28px calc(-1*clamp(18px,3vw,34px)) 0;height:64px;background:light-dark(#f4ece6,#26222b);border-top:4px solid light-dark(#e2d6cc,#3a3440);overflow:hidden;position:relative}
+.belt .tr{position:absolute;top:8px;left:0;display:flex;gap:26px;width:max-content;animation:belt 28s linear infinite}
+.belt svg{width:46px;height:46px;flex:none}
+@keyframes belt{to{transform:translateX(-50%)}}
+#cheer{position:fixed;inset-inline-end:18px;bottom:18px;z-index:40;display:flex;align-items:flex-end;gap:4px;pointer-events:none;opacity:0;transform:translateY(30px) scale(.8);transition:.25s}
+#cheer.on{opacity:1;transform:none}
+#cheer svg{width:84px;height:84px}
+#cheer span{background:#fff;color:#3b2a35;border:2px solid #ffc3d0;border-radius:16px 16px 4px 16px;padding:6px 12px;font-weight:800;font-family:"Zen Maru Gothic",Nunito,sans-serif;font-size:18px;margin-bottom:56px;white-space:nowrap}
+#cheer.bad span{border-color:#a9b8ff}
+.resc .mas{width:110px;height:110px;margin:-70px auto 0;filter:drop-shadow(0 6px 8px rgba(0,0,0,.12))}
+.ptop{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-bottom:8px}
+.ptop h2{font-size:clamp(24px,3vw,32px);flex:1}
+.instr{background:var(--pink);border-radius:14px;padding:10px 16px;margin:10px 0 20px;display:grid;gap:2px}
+.instr .he{font-size:16px}
+.prog{height:12px;background:var(--line);border-radius:99px;overflow:hidden;margin:6px 0 18px}
+.prog i{display:block;height:100%;background:linear-gradient(90deg,#ff8fa3,#ffc36b,#7fd6a8);border-radius:99px;transition:width .35s}
+.opts{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px}
+.opt{border:2px solid var(--line);background:var(--card);border-radius:16px;padding:14px;min-height:56px;font-weight:800;font-size:19px}
+.opt:hover{border-color:var(--indigo)}
+.opt.ok,.slot.ok,.chip.ok{background:var(--okbg);border-color:var(--ok);color:var(--ok)}
+.opt.bad,.slot.bad,.chip.bad{background:var(--badbg);border-color:var(--bad);color:var(--bad)}
+.shake{animation:sh .35s}@keyframes sh{25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+.pop{animation:pp .35s}@keyframes pp{50%{transform:scale(1.08)}}
+.big{font-size:clamp(70px,13vw,130px);white-space:nowrap;text-align:center;line-height:1.1;margin:4px 0 14px}
+.sent{font-size:clamp(20px,2.6vw,26px);font-weight:700;text-align:center;margin:10px auto 22px;max-width:760px}
+.blank{display:inline-block;min-width:110px;border-bottom:3px solid var(--red);color:var(--ok);padding:0 6px}
+.cols{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.4fr);gap:14px}
+.cols .col{display:grid;gap:10px;align-content:start}
+.m{border:2px solid var(--line);background:var(--card);border-radius:14px;padding:12px 14px;min-height:52px;text-align:start;font-weight:700}
+.m.w{font-size:19px;font-weight:800}
+.m.sel{border-color:var(--indigo);background:light-dark(#e9edff,#252c52)}
+.m.done{background:var(--okbg);border-color:var(--ok);color:var(--ok);opacity:.75;cursor:default}
+.toggle{display:inline-flex;border:2px solid var(--line);border-radius:99px;overflow:hidden}
+.toggle button{border:0;background:none;padding:8px 16px;min-height:40px;font-weight:800}
+.toggle button.on{background:var(--indigo);color:var(--bg)}
+.bank{display:flex;flex-wrap:wrap;gap:10px;padding:14px;border:2px dashed var(--pink2);border-radius:18px;margin-bottom:18px;min-height:70px;background:light-dark(#fff8f9,#1c181d)}
+.chip{border:2px solid var(--pink2);background:var(--card);border-radius:99px;padding:8px 16px;min-height:44px;font-weight:800;font-size:18px;touch-action:none}
+.chip.sel{background:var(--indigo);border-color:var(--indigo);color:var(--bg)}
+.chip.used{visibility:hidden}
+.blist{display:grid;gap:12px;counter-reset:q}
+.bl{font-size:19px;font-weight:600;display:flex;flex-wrap:wrap;align-items:center;gap:6px;padding:10px 0;border-bottom:1px solid var(--line)}
+.bl::before{counter-increment:q;content:counter(q) ".";font-weight:800;color:var(--red2);margin-inline-end:4px}
+.slot{min-width:130px;min-height:44px;border:2px dashed var(--soft);border-radius:12px;background:none;font-weight:800;font-size:18px;padding:4px 12px}
+.slot.act{border-style:solid;border-color:var(--indigo);background:light-dark(#e9edff,#252c52)}
+.slot.full{border-style:solid;border-color:var(--pink2)}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+.tabs button{border:2px solid var(--line);background:var(--card);border-radius:99px;padding:6px 16px;min-height:40px;font-weight:800}
+.tabs button.on{background:var(--red);border-color:var(--red);color:#fff}
+.buckets{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.bk{border:3px solid;border-radius:20px;min-height:220px;padding:12px;display:flex;flex-direction:column;gap:8px;align-items:stretch;background:var(--card);text-align:start}
+.bk h3{font-size:22px;text-align:center}
+.bk .he{text-align:center;font-size:15px;color:var(--soft)}
+.bk.n{border-color:#2b8ac8}.bk.v{border-color:#e07b00}.bk.a{border-color:#9b3fc0}
+.bk.over{background:var(--pink)}
+.bk .chip{align-self:center;cursor:default}
+.passage{font-size:19px;line-height:1.8;background:light-dark(#fffafb,#1c181d);border-radius:18px;padding:clamp(16px,3vw,30px);border-inline-start:6px solid var(--red);max-width:820px}
+.passage p{margin:0 0 12px}
+.vw{background:var(--pink);border-radius:6px;padding:1px 4px;font-weight:800;cursor:pointer;border:0;font-size:inherit;position:relative}
+.tip{position:fixed;z-index:50;background:var(--ink);color:var(--bg);padding:6px 12px;border-radius:10px;font-size:16px;pointer-events:none}
+.q{padding:16px 0;border-bottom:1px solid var(--line)}
+.q p{font-weight:800;margin:0 0 10px;font-size:18px}
+.q .opts{grid-template-columns:repeat(auto-fit,minmax(150px,1fr))}
+.q .opt{font-size:17px;min-height:48px}
+.timer{font-family:"Zen Maru Gothic",Nunito,sans-serif;font-size:40px;font-weight:900;color:var(--red2)}
+.wl{width:100%;border-collapse:collapse}
+.wl td{padding:10px 8px;border-bottom:1px solid var(--line);vertical-align:middle}
+.wl td:first-child{font-weight:800;font-size:18px;white-space:nowrap}
+.wl td.he{text-align:right;font-size:17px}
+.spk{border:2px solid var(--line);background:var(--card);border-radius:50%;width:44px;height:44px;display:inline-grid;place-items:center;flex:none}
+.spk svg{width:20px;height:20px}
+input[type=search]{font:inherit;font-size:16px;padding:10px 14px;border-radius:12px;border:2px solid var(--line);background:var(--card);color:var(--ink);min-height:44px;width:min(320px,100%)}
+.mem{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;max-width:720px;margin:0 auto}
+.card{aspect-ratio:4/3.2;perspective:800px;border:0;background:none;padding:0}
+.card .in{position:relative;display:block;width:100%;height:100%;transition:transform .45s;transform-style:preserve-3d}
+.card.up .in,.card.done .in{transform:rotateY(180deg)}
+.card .f,.card .k{position:absolute;inset:0;border-radius:16px;backface-visibility:hidden;display:grid;place-items:center;padding:6px;text-align:center}
+.card .k{background:linear-gradient(135deg,#ffc3d0,#ffe0b8);border:3px solid #fff;box-shadow:0 4px 0 rgba(0,0,0,.08)}
+.card .k svg{width:46%;height:46%}
+.card .f{transform:rotateY(180deg);background:var(--card);border:3px solid var(--pink2);font-weight:800;font-size:clamp(15px,2.2vw,21px);line-height:1.2}
+.card.done .f{background:var(--okbg);border-color:var(--ok)}
+.card .f .e{font-size:clamp(30px,5vw,46px)}
+.plate{display:flex;justify-content:center;align-items:flex-end;gap:4px;padding:10px 22px 14px;margin:0 auto 6px;width:max-content;max-width:100%;background:light-dark(#eef3ff,#262c40);border-radius:999px;border-bottom:5px solid light-dark(#d5def5,#353c55)}
+.plate svg{width:clamp(38px,8vw,58px);height:clamp(38px,8vw,58px);transition:transform .4s,opacity .4s}
+.plate svg.gone{transform:translateY(-30px) scale(0) rotate(40deg);opacity:0}
+.hword{display:flex;justify-content:center;flex-wrap:wrap;gap:8px 6px;margin:16px 0}
+.hword span{width:clamp(30px,6vw,44px);height:clamp(40px,7vw,54px);border-bottom:4px solid var(--red);display:grid;place-items:center;font-family:"Zen Maru Gothic",Nunito,sans-serif;font-size:clamp(24px,4vw,34px);font-weight:900;text-transform:lowercase}
+.hword span.sp{border:0;width:16px}
+.hint{display:flex;justify-content:center;align-items:center;gap:12px;flex-wrap:wrap;font-size:20px;font-weight:700}
+.hint .e{font-size:44px}
+.keys{display:grid;grid-template-columns:repeat(auto-fill,minmax(44px,1fr));gap:7px;max-width:640px;margin:14px auto 0}
+.keys button{min-height:46px;border-radius:12px;border:2px solid var(--line);background:var(--card);font-weight:900;font-size:19px}
+.keys button.y{background:var(--okbg);border-color:var(--ok);color:var(--ok)}
+.keys button.n{background:var(--badbg);border-color:var(--bad);color:var(--bad);opacity:.6}
+.fc{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:14px}
+.fc .card{aspect-ratio:1/1}
+.fc .card .k{background:var(--card);border:3px solid var(--pink2);color:var(--ink);font-family:"Zen Maru Gothic",Nunito,sans-serif;font-size:clamp(19px,2.4vw,24px);font-weight:900;flex-direction:column}
+.fc .card:nth-child(4n+2) .k{border-color:#a9d9c0}.fc .card:nth-child(4n+3) .k{border-color:#b6c9f5}.fc .card:nth-child(4n) .k{border-color:#ffd98a}
+.fc .card .k small{display:block;font:600 13px Nunito,sans-serif;color:var(--soft);margin-top:6px}
+.fc .card .f{background:var(--pink);border-color:var(--pink2);font-family:Rubik,Arial,sans-serif;direction:rtl;font-size:clamp(18px,2.2vw,22px);gap:2px;align-content:center}
+.fc .card .f .e{font-size:clamp(40px,6vw,56px);line-height:1.1}
+.fc .card .f .ps{font:800 13px Nunito,sans-serif;color:var(--red2);direction:ltr}
+.res{position:fixed;inset:0;background:rgba(10,8,14,.55);display:grid;place-items:center;z-index:60;padding:16px}
+.resc{background:var(--card);border-radius:26px;padding:28px;margin-top:60px;max-width:420px;width:100%;text-align:center;display:grid;gap:12px}
+.resc .stars{font-size:46px;grid-column:auto}
+.resc h2{font-size:32px}
+.conf{position:fixed;top:-20px;width:10px;height:16px;z-index:70;pointer-events:none;animation:fall 2.4s linear forwards}
+@keyframes fall{to{transform:translateY(110vh) rotate(720deg)}}
+.fb{min-height:30px;text-align:center;font-weight:800;font-size:19px;margin-top:14px}
+.fb.ok{color:var(--ok)}.fb.bad{color:var(--bad)}
+.row{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-top:18px}
+.hide{display:none!important}
+@media(max-width:700px){.mem{grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}.fc{grid-template-columns:repeat(2,minmax(0,1fr))}.ptop{padding-inline-end:56px}.deco{width:90px;height:90px}#cheer svg{width:64px;height:64px}#cheer span{margin-bottom:40px}.hwrap{grid-template-columns:1fr}.fuji{max-height:110px;width:auto;margin-inline-start:auto}.cols{grid-template-columns:minmax(0,1fr) minmax(0,1.2fr)}.m{font-size:15px;padding:10px}.m.w{font-size:16px}.buckets{grid-template-columns:1fr}.bk{min-height:110px}.bk .chip{align-self:flex-start}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+<symbol id="i-sushi" viewBox="0 0 64 64"><ellipse cx="32" cy="53" rx="24" ry="4" fill="#000" opacity=".08"/><rect x="10" y="30" width="44" height="20" rx="10" fill="#fff" stroke="#eadfd6" stroke-width="2"/><path d="M8 33c0-8 10-13 24-13s24 5 24 13c0 3-3 4-6 3-6-2-12-2-18-2s-12 0-18 2c-3 1-6 0-6-3z" fill="#ff8a65"/><path d="M17 25l5 8M27 22l4 10M39 22l4 10M48 26l3 6" stroke="#ffd0bd" stroke-width="2.5" stroke-linecap="round"/><rect x="27" y="21" width="10" height="29" rx="2" fill="#2f4a3a"/></symbol>
+<symbol id="i-maki" viewBox="0 0 64 64"><ellipse cx="32" cy="56" rx="20" ry="4" fill="#000" opacity=".08"/><circle cx="32" cy="32" r="22" fill="#2f4a3a"/><circle cx="32" cy="32" r="18" fill="#fff"/><circle cx="32" cy="32" r="8" fill="#ff8a65"/><circle cx="36" cy="29" r="4" fill="#8bd17c"/></symbol>
+<symbol id="i-tamago" viewBox="0 0 64 64"><ellipse cx="32" cy="53" rx="24" ry="4" fill="#000" opacity=".08"/><rect x="10" y="32" width="44" height="18" rx="9" fill="#fff" stroke="#eadfd6" stroke-width="2"/><rect x="8" y="20" width="48" height="16" rx="6" fill="#ffd166"/><rect x="27" y="19" width="10" height="31" rx="2" fill="#2f4a3a"/></symbol>
+<symbol id="i-crane" viewBox="0 0 64 64"><path d="M4 30 L30 38 L20 56Z" fill="#ff9fb4"/><path d="M30 38 L60 12 L42 42Z" fill="#ff7f9c"/><path d="M20 56 L30 38 L42 42 L36 54Z" fill="#ffc6d2"/><path d="M30 38 L42 42 L48 24Z" fill="#ffb3c4"/><path d="M4 30 L0 20 L10 30Z" fill="#ff7f9c"/><path d="M60 12 L64 6 L62 15Z" fill="#e85f7e"/></symbol>
+<symbol id="i-crane2" viewBox="0 0 64 64"><path d="M4 30 L30 38 L20 56Z" fill="#9fc3ff"/><path d="M30 38 L60 12 L42 42Z" fill="#7fa8f5"/><path d="M20 56 L30 38 L42 42 L36 54Z" fill="#c8dcff"/><path d="M30 38 L42 42 L48 24Z" fill="#b1ccff"/><path d="M4 30 L0 20 L10 30Z" fill="#7fa8f5"/><path d="M60 12 L64 6 L62 15Z" fill="#5f8be6"/></symbol>
+<symbol id="i-oni" viewBox="0 0 64 64"><ellipse cx="32" cy="59" rx="20" ry="3.5" fill="#000" opacity=".08"/><path d="M32 6c6 0 26 34 26 42 0 6-6 9-26 9S6 54 6 48C6 40 26 6 32 6z" fill="#fff" stroke="#e7dfe6" stroke-width="2"/><rect x="21" y="42" width="22" height="15" rx="3" fill="#2f4a3a"/><circle cx="25" cy="32" r="2.8" fill="#2b2533"/><circle cx="39" cy="32" r="2.8" fill="#2b2533"/><circle cx="26" cy="31" r="1" fill="#fff"/><circle cx="40" cy="31" r="1" fill="#fff"/><circle cx="20.5" cy="37" r="3.2" fill="#ffb3c4"/><circle cx="43.5" cy="37" r="3.2" fill="#ffb3c4"/><path d="M28 36q4 4 8 0" stroke="#2b2533" stroke-width="2" fill="none" stroke-linecap="round"/></symbol>
+<symbol id="i-lantern" viewBox="0 0 64 64"><rect x="30" y="2" width="4" height="8" fill="#6b5444"/><rect x="22" y="8" width="20" height="6" rx="2" fill="#3b3340"/><ellipse cx="32" cy="32" rx="20" ry="19" fill="#ff7f93"/><path d="M14 25h36M12.5 32h39M14 39h36" stroke="#f25a74" stroke-width="2"/><ellipse cx="25" cy="27" rx="4" ry="7" fill="#fff" opacity=".35"/><rect x="22" y="49" width="20" height="6" rx="2" fill="#3b3340"/><path d="M28 55v7M32 55v8M36 55v7" stroke="#ffc94d" stroke-width="2"/></symbol>
+<symbol id="i-sakura" viewBox="0 0 64 64"><g fill="#ffb7c8"><path id="pt" d="M32 32C22 22 22 8 32 4c10 4 10 18 0 28z"/><use href="#pt" transform="rotate(72 32 32)"/><use href="#pt" transform="rotate(144 32 32)"/><use href="#pt" transform="rotate(216 32 32)"/><use href="#pt" transform="rotate(288 32 32)"/></g><circle cx="32" cy="32" r="6" fill="#ff7f9c"/><circle cx="32" cy="32" r="2.5" fill="#ffd166"/></symbol>
+<symbol id="i-fan" viewBox="0 0 64 64"><path d="M32 54 L5 27 A38 38 0 0 1 59 27Z" fill="#8ec5ff"/><path d="M32 54 L13 18 M32 54 L22 13 M32 54 L32 11 M32 54 L42 13 M32 54 L51 18" stroke="#fff" stroke-width="2"/><circle cx="40" cy="25" r="6" fill="#ff7f93"/><circle cx="32" cy="54" r="4" fill="#3b3340"/></symbol>
+<symbol id="i-daruma" viewBox="0 0 64 64"><ellipse cx="32" cy="59" rx="18" ry="3" fill="#000" opacity=".08"/><path d="M32 6c14 0 24 12 24 28 0 14-10 23-24 23S8 48 8 34C8 18 18 6 32 6z" fill="#ff7f93"/><ellipse cx="32" cy="30" rx="14" ry="12" fill="#fff4ec"/><circle cx="26" cy="28" r="3.5" fill="#2b2533"/><circle cx="38" cy="28" r="3.5" fill="#fff" stroke="#2b2533" stroke-width="1.5"/><path d="M28 36q4 2 8 0" stroke="#2b2533" stroke-width="2" fill="none"/><path d="M21 47q11 7 22 0" stroke="#ffc94d" stroke-width="3" fill="none"/></symbol>
+<symbol id="i-fuji" viewBox="0 0 64 64"><circle cx="47" cy="17" r="9" fill="#ff9fb2"/><path d="M4 56 L26 22 Q32 16 38 22 L60 56Z" fill="#a9bdf0"/><path d="M26 22 Q32 16 38 22 L43 30 L38 28 L34 32 L30 28 L26 32 L21 30Z" fill="#fff"/></symbol>
+<symbol id="i-cat" viewBox="0 0 64 64"><ellipse cx="32" cy="59" rx="18" ry="3" fill="#000" opacity=".08"/><rect x="14" y="30" width="36" height="28" rx="14" fill="#fff" stroke="#eadfe6" stroke-width="2"/><path d="M12 12 L20 22 L14 28Z M52 12 L44 22 L50 28Z" fill="#fff" stroke="#eadfe6" stroke-width="2"/><circle cx="32" cy="27" r="17" fill="#fff" stroke="#eadfe6" stroke-width="2"/><path d="M25 26q2-3 4 0M35 26q2-3 4 0" stroke="#2b2533" stroke-width="2" fill="none"/><path d="M30 31q2 2 4 0" stroke="#2b2533" stroke-width="1.6" fill="none"/><circle cx="22" cy="31" r="2.6" fill="#ffb3c4"/><circle cx="42" cy="31" r="2.6" fill="#ffb3c4"/><path d="M16 40 Q32 46 48 40" stroke="#ff7f93" stroke-width="3" fill="none"/><circle cx="32" cy="45" r="4" fill="#ffc94d"/><path d="M50 22 q8-6 6 6" stroke="#eadfe6" stroke-width="5" fill="none" stroke-linecap="round"/></symbol>
+</defs></svg>
+<div id="cheer" aria-hidden="true"><span></span><svg><use href="#i-oni"/></svg></div>
+<header>
+ <div class="hwrap">
+  <div>
+   <h1>All About Japan</h1>
+   <div class="sub">Think About It · Unit 1 · Vocabulary Journey</div>
+   <p class="he">מסע אוצר מילים ביפן – עברו בין התחנות, צברו נקודות וכוכבים!</p>
+  </div>
+  <svg class="fuji" viewBox="0 0 520 230" aria-hidden="true">
+   <circle cx="390" cy="70" r="46" fill="#ff9fb2"/><circle cx="390" cy="70" r="62" fill="#ff9fb2" opacity=".2"/>
+   <g fill="#fff" opacity=".9"><ellipse cx="120" cy="60" rx="46" ry="14"/><ellipse cx="150" cy="50" rx="30" ry="14"/><ellipse cx="470" cy="120" rx="36" ry="10"/></g>
+   <path d="M40 230 L222 76 Q245 58 268 76 L470 230Z" fill="#a9bdf0"/>
+   <path d="M245 64 L268 76 L470 230 L340 230Z" fill="#8ea6e6"/>
+   <path d="M222 76 Q245 58 268 76 L305 108 L286 101 L270 114 L252 99 L235 114 L218 101 L185 108Z" fill="#fff"/>
+   <g fill="#f25a74"><rect x="56" y="140" width="80" height="9" rx="4"/><rect x="64" y="153" width="64" height="6"/><rect x="72" y="149" width="8" height="81"/><rect x="112" y="149" width="8" height="81"/></g>
+   <path d="M520 20 Q470 40 430 30" stroke="#8a5a4a" stroke-width="5" fill="none" stroke-linecap="round"/>
+   <g><use href="#i-sakura" x="440" y="14" width="30" height="30"/><use href="#i-sakura" x="478" y="26" width="24" height="24"/><use href="#i-sakura" x="416" y="34" width="20" height="20"/><use href="#i-sakura" x="300" y="150" width="18" height="18"/><use href="#i-sakura" x="170" y="190" width="16" height="16"/></g>
+   <use href="#i-oni" x="420" y="150" width="78" height="78"/>
+  </svg>
+ </div>
+</header>
+<div class="bar"><div class="barin">
+ <span class="pill">Points <b id="pts">0</b></span>
+ <span class="pill">Stars <b id="sts">0</b>/30</span>
+ <span class="grow"></span>
+ <button class="btn ghost" id="snd" aria-pressed="true">Sound: on</button>
+ <button class="btn ghost hide" id="back">Back to map</button>
+</div></div>
+<main>
+ <section id="home">
+  <div class="lead"><h2>Choose a station</h2><span class="he" style="color:var(--soft)">בחרו תחנה כדי להתחיל לתרגל</span></div>
+  <div class="map" id="map"></div>
+ </section>
+ <section id="play" class="hide"></section>
+</main>
+<div id="tip" class="tip hide"></div>
+
+<script>
+{
+const W=[
+["about","על; בערך","on the subject of; around",1],["afraid","מפחד","scared",1],["anything","משהו; כל דבר","any thing at all",1],["arrive","להגיע","to get to a place",1],["catch (a train)","לתפוס (רכבת)","to get on a train before it leaves",1],["clever","חכם, נבון","smart; quick to learn",1],["comfortable","נוח","nice and soft; makes you feel relaxed",1],["cost","לעלות (מחיר)","to have a price of",1],["Dear ...","יקר/ה... (פתיחת מכתב)","how you start a letter",1],["decide","להחליט","to make a choice",1],["directly","ישירות","straight there, with no stops",1],["famous","מפורסם","known by many people",1],["get off","לרדת (מאוטובוס/רכבת)","to leave a bus or a train",1],["get on","לעלות (על אוטובוס/רכבת)","to go into a bus or a train",1],["glad","שמח","happy",1],["hit","להכות, לפגוע","to touch something very hard",1],["island","אי","land with water all around it",1],["leave","לעזוב, לצאת","to go away from a place",1],["love","אהבה; לאהוב","a very strong good feeling for someone",1],["million","מיליון","1,000,000",1],["mountain","הר","a very high hill",1],["nature","טבע","trees, plants, animals and the world around us",1],["order","להזמין (אוכל)","to ask for food in a restaurant",1],["pick","לבחור; לקטוף","to choose",1],["popular","פופולרי, אהוד","liked by many people",1],["reason","סיבה","why something happens",1],["return","לחזור; להחזיר","to come or go back",1],["saw","ראה (עבר של see)","past of 'see'",1],["several","כמה, מספר","more than two, but not many",1],["still","עדיין","continuing until now",1],["take (something) away","לקחת משהו משם","to remove something from a place",1],["take (something) off","להוריד (בגד, נעליים)","to remove clothes or shoes",1],["take a picture","לצלם","to use a camera",1],["take a train","לנסוע ברכבת","to travel by train",1],["Take care!","שמור על עצמך!","goodbye – be safe!",1],["team","קבוצה","a group of players",1],["the cold","הקור","very low temperature",1],["thousand","אלף","1,000",1],["visitor","מבקר, אורח","a person who comes to see a place",1],["welcome","ברוך הבא","what you say to a guest who arrives",1],
+["a while","זמן מה","some time",2],["against","נגד","playing versus another team",2],["all the time","כל הזמן","always; very often",2],["almost","כמעט","nearly; not completely",2],["believe","להאמין","to think something is true",2],["both","שניהם","the two of them",2],["collect","לאסוף","to bring things together as a hobby",2],["come home","לחזור הביתה","to return to your house",2],["competition","תחרות","a contest where people try to win",2],["could","יכול היה (עבר של can)","past of 'can'",2],["date","תאריך","the day and month, e.g. 20 May",2],["excellent","מצוין","very, very good",2],["feel well","להרגיש טוב","to be healthy",2],["full","מלא","with no more space inside",2],["get better","להחלים, להשתפר","to become healthy again",2],["get the flu","לחלות בשפעת","to become sick with fever and a cough",2],["if","אם","used for a condition: ___ it rains, we stay home",2],["instead","במקום","in place of something else",2],["invite","להזמין (אורח)","to ask someone to come to your party",2],["keep","לשמור","to have something and not give it away",2],["kiss","נשיקה; לנשק","to touch with your lips",2],["make a mistake","לטעות","to do something wrong",2],["mean","להתכוון; פירושו","to have a meaning",2],["medical","רפואי","connected to doctors and health",2],["message","הודעה","a short note you send to someone",2],["miss","להתגעגע; לפספס","to feel sad when someone is not with you",2],["much","הרבה","a lot of",2],["nurse","אח/אחות","a person who helps sick people in a hospital",2],["only","רק","just; no more than",2],["perfect","מושלם","the best, with no mistakes",2],["pocket","כיס","a small bag in your clothes",2],["really","באמת","very; truly",2],["see","לראות","to use your eyes",2],["should","כדאי, צריך","used to give advice",2],["so","אז; כל כך","very (so happy); and because of this",2],["sorry","מצטער; לרחם (feel sorry for)","what you say when you did something wrong; feeling pity for someone",2],["tasty","טעים","with a good flavour",2],["tell a story","לספר סיפור","to say what happened in a tale",2]];
+const POS={"about":"PREP","afraid":"ADJ","anything":"PRON","arrive":"V","catch (a train)":"V","clever":"ADJ","comfortable":"ADJ","cost":"V","Dear ...":"ADJ","decide":"V","directly":"ADV","famous":"ADJ","get off":"V","get on":"V","glad":"ADJ","hit":"V","island":"N","leave":"V","love":"N/V","million":"N","mountain":"N","nature":"N","order":"V","pick":"V","popular":"ADJ","reason":"N","return":"V","saw":"V","several":"DET","still":"ADV","take (something) away":"V","take (something) off":"V","take a picture":"V","take a train":"V","Take care!":"EXP","team":"N","the cold":"N","thousand":"N","visitor":"N","welcome":"EXP","a while":"N","against":"PREP","all the time":"ADV","almost":"ADV","believe":"V","both":"PRON","collect":"V","come home":"V","competition":"N","could":"V","date":"N","excellent":"ADJ","feel well":"V","full":"ADJ","get better":"V","get the flu":"V","if":"CONJ","instead":"ADV","invite":"V","keep":"V","kiss":"N/V","make a mistake":"V","mean":"V","medical":"ADJ","message":"N","miss":"V","much":"DET","nurse":"N","only":"ADV","perfect":"ADJ","pocket":"N","really":"ADV","see":"V","should":"V","so":"ADV","sorry":"ADJ","tasty":"ADJ","tell a story":"V"};
+W.forEach(w=>{w.push(POS[w[0]]);if(!w[4])console.error("no pos",w[0])});
+const OKP=["N","V","ADJ","N/V"],tag=w=>OKP.includes(w[4])?` (${w[4]})`:"",D=w=>w[2]+tag(w),H=w=>w[1]+tag(w);
+const HE=Object.fromEntries(W.map(w=>[w[0].toLowerCase(),H(w)]));
+const PICS=[["island","🏝️"],["mountain","🏔️"],["nature","🌳"],["nurse","🧑‍⚕️"],["message","💬"],["kiss","💋"],["the cold","🥶"],["get the flu","🤒"],["take a picture","📸"],["take a train","🚆"],["competition","🏆"],["afraid","😱"],["glad","😊"],["clever","🧠"],["tasty","😋"],["sorry","😔"],["date","📅"],["medical","🩺"],["invite","💌"],["love","❤️"],["welcome","👋"],["come home","🏠"],["cost","🏷️"],["perfect","💯"],["tell a story","📖"],["pocket","👖"],["team","🧑‍🤝‍🧑🧑‍🤝‍🧑"]];
+const PIC=Object.fromEntries(PICS);
+const FPIC={...PIC,"order":"🍜","visitor":"🧳","see":"👀","comfortable":"🛋️","decide":"🤔","excellent":"🌟","make a mistake":"❌","get better":"🩹","against":"🆚","hit":"⚾","catch (a train)":"🚉","million":"1,000,000","thousand":"1,000","collect":"🐚","full":"🈵","mountain":"🗻","feel well":"💪","Take care!":"🤗","return":"🔙","miss":"🥺"};
+const TWO=[["Mount Fuji is the most ___ mountain in Japan.","famous","afraid"],["My little brother is ___ of the dark.","afraid","clever"],["Hurry up! We need to ___ the 8:00 train.","catch","cost"],["How much does this ticket ___?","cost","decide"],["This bed is very ___. I sleep well on it.","comfortable","medical"],["In Japan, you ___ your shoes off before you go into a house.","take","get"],["The bus stopped and we got ___.","off","on"],["I can't ___ which T-shirt to buy.","decide","arrive"],["Sushi is very ___ in Japan. Everybody eats it.","popular","afraid"],["Our plane will ___ in Tokyo at 6:00 p.m.","arrive","invite"],["It's 10 o'clock and he is ___ sleeping.","still","only"],["I didn't ___ well yesterday, so I stayed in bed.","feel","keep"],["Dana is a ___. She works in a hospital.","nurse","visitor"],["I want to ___ all my friends to my party.","invite","believe"],["Do you ___ in ghosts?","believe","collect"],["My brother likes to ___ stamps.","collect","miss"],["Oops! I made a ___ in my homework.","mistake","message"],["This cake is ___! Can I have more?","tasty","medical"],["I'm ___ I'm late.","sorry","full"],["You ___ wear a coat. It's cold outside.","should","could"],["Our team won the ___!","competition","pocket"],["I ___ my grandma. I haven't seen her for a long time.","miss","kiss"],["Put your phone in your ___.","pocket","reason"],["Write the ___ at the top of the page: 20 November.","date","nature"],["Tokyo has more than 14 ___ people.","million","thousand"],["The train goes ___ to Kyoto. It doesn't stop.","directly","several"]];
+const BANK=[
+{name:"Set 1",words:["island","mountain","visitors","thousand","glad","Welcome","reason","team"],s:[["Japan has thousands of islands. The biggest ___ is Honshu.","island"],["Mount Fuji is a very high ___.","mountain"],["Millions of ___ come to Japan every year.","visitors"],["This temple is more than a ___ years old.","thousand"],["I'm so ___ to see you again!","glad"],["___ to Tokyo! We hope you enjoy your visit.","Welcome"]]},
+{name:"Set 2",words:["leave","return","directly","nature","reason","order","hit","still"],s:[["What time does the train ___ the station?","leave"],["We will ___ home next Sunday.","return"],["This train goes ___ to Kyoto. It doesn't stop anywhere.","directly"],["I love ___: trees, rivers and flowers.","nature"],["What is the ___ for your trip? I want to learn Japanese.","reason"],["Can I ___ a bowl of ramen, please?","order"]]},
+{name:"Set 3",words:["almost","instead","both","message","perfect","all the time","against","much"],s:[["It's ___ 8 o'clock. Hurry up!","almost"],["I don't want tea. Can I have juice ___?","instead"],["Tom and Ben ___ like football.","both"],["I sent my mom a ___ on my phone.","message"],["The weather is sunny and warm. It's a ___ day!","perfect"],["He talks ___. He never stops!","all the time"]]},
+{name:"Set 4",words:["get better","get the flu","a while","against","keep","medical","kiss","only"],s:[["Drink a lot of tea and you will ___ soon.","get better"],["Wash your hands, so you don't ___ this winter.","get the flu"],["Wait here for ___. I'll come back soon.","a while"],["Today Japan plays ___ Korea.","against"],["Can you ___ a secret?","keep"],["She wants to go to ___ school and become a doctor.","medical"]]}];
+const SORT={n:["island","mountain","nature","reason","team","visitor","competition","date","message","nurse","pocket"],v:["arrive","decide","leave","return","believe","collect","invite","keep","see","pick","miss"],a:["afraid","clever","comfortable","famous","glad","popular","excellent","full","medical","perfect","tasty","sorry"]};
+const TEXT=`<p><b>Dear</b> Noa,</p>
+<p>Greetings from Japan! We <b>arrived</b> in Tokyo three days ago. Japan is an <b>island</b> country – it has thousands of islands! Tokyo is huge. About 14 <b>million</b> people live here, and millions of <b>visitors</b> come to Japan every year.</p>
+<p>Yesterday we <b>decided</b> to <b>take a train</b> to Mount Fuji. The train was fast and very <b>comfortable</b>, and it went <b>directly</b> to the <b>mountain</b>. Mount Fuji is the most <b>famous</b> mountain in Japan. It is 3,776 metres high, and there is <b>still</b> snow on the top. I <b>took a picture</b> of it for you. <b>The cold</b> was terrible, but the <b>nature</b> here is beautiful!</p>
+<p>In Japan, you <b>take</b> your shoes <b>off</b> before you go into a house. Last night, a Japanese family <b>invited</b> us for dinner. We ate sushi and ramen. <b>Both</b> were <b>really</b> <b>tasty</b>! Sushi is very <b>popular</b> here. I wasn't <b>afraid</b> to try new food – I ate <b>almost</b> everything!</p>
+<p>Tomorrow we will <b>catch</b> the train to Kyoto. Kyoto has more than a <b>thousand</b> temples. We <b>return</b> home next week. I <b>miss</b> you <b>all the time</b>!</p>
+<p><b>Take care!</b><br><b>Love</b>,<br>Maya</p>`;
+const TIPS={dear:"יקרה (פתיחת מכתב)",visitors:"מבקרים",decided:"החלטנו",arrived:"הגענו",invited:"הזמינו",took:"צילמתי (took a picture)","took a picture":"צילמתי",take:"להוריד (take off)",off:"להוריד (take off)",catch:"לתפוס (רכבת)"};
+const QS=[["Where is Maya now?",["In Japan","In Israel","In Korea"],0],["How did Maya get to Mount Fuji?",["By bus","By train","By plane"],1],["What is still on the top of Mount Fuji?",["Snow","A temple","Visitors"],0],["What do people in Japan do before they go into a house?",["They take a picture","They take their shoes off","They order sushi"],1],["True or false: Maya was afraid to try new food.",["True","False"],1],["True or false: The train stopped at many stations on the way to Mount Fuji.",["True","False"],1],["Who invited Maya's family for dinner?",["A Japanese family","Noa","A nurse"],0],["Where will Maya go tomorrow?",["Home","To Kyoto","To an island"],1],["In the text, \"comfortable\" means…",["fast","nice and relaxing","very cold"],1],["Why does Maya write to Noa?",["She misses her and wants to tell about Japan","She is sick","She wants to order food"],0]];
+const ST=[{id:"words",no:"Station 0 · Tokyo",t:"Word List & Flashcards",he:"רשימת מילים וכרטיסיות",ic:"lantern",deco:"lantern",fn:words},{id:"match",no:"Station 1 · Yokohama",t:"Word ↔ Meaning",he:"התאמת מילה לפירוש",ic:"crane",deco:"crane2",fn:match},{id:"pics",no:"Station 2 · Mount Fuji",t:"Word ↔ Picture",he:"התאמת מילה לתמונה",ic:"fuji",deco:"sushi",fn:pics},{id:"two",no:"Station 3 · Nagoya",t:"Pick 1 of 2",he:"השלמת משפטים – 2 אפשרויות",ic:"fan",deco:"fan",fn:two},{id:"bank",no:"Station 4 · Kyoto",t:"Word Bank",he:"השלמת משפטים ממחסן מילים",ic:"sushi",deco:"maki",fn:bank},{id:"sort",no:"Station 5 · Nara",t:"Noun · Verb · Adjective",he:"מיון מילים לקטגוריות",ic:"maki",deco:"tamago",fn:sort},{id:"memory",no:"Station 6 · Sapporo",t:"Memory Game",he:"משחק זיכרון",ic:"sakura",deco:"crane",fn:memory},{id:"hang",no:"Station 7 · Kobe",t:"Save the Sushi!",he:"איש תלוי – נחשו את המילה",ic:"tamago",deco:"maki",fn:hang},{id:"read",no:"Station 8 · Osaka",t:"Reading: A Letter from Japan",he:"הבנת הנקרא",ic:"crane2",deco:"crane",fn:read},{id:"speed",no:"Station 9 · Hiroshima",t:"Speed Challenge",he:"אתגר מהירות – 60 שניות",ic:"daruma",deco:"daruma",fn:speed},{id:"fix",no:"Final Station · Okinawa",t:"Mixed Final Quiz",he:"מבחן מסכם – כל סוגי השאלות",ic:"cat",deco:"cat",fn:finalq}];
+const STARRED=ST.filter(s=>s.id!=="words");
+let S={pts:0,stars:{}};try{S=JSON.parse(localStorage.getItem("jp-vocab"))||S}catch(e){}
+const save=()=>{try{localStorage.setItem("jp-vocab",JSON.stringify(S))}catch(e){}};
+const $=s=>document.querySelector(s);
+const shuf=a=>{a=[...a];for(let i=a.length-1;i>0;i--){const j=Math.random()*(i+1)|0;[a[i],a[j]]=[a[j],a[i]]}return a};
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+let sound=true,ctx=null;
+let chT;const GOOD=["Sugoi!","Great!","Yatta!","Excellent!","Perfect!"],BADM=["Oops!","Try again!","Almost!"];
+function cheer(ok){const c=document.getElementById("cheer");c.querySelector("span").textContent=(ok?GOOD:BADM)[Math.random()*(ok?5:3)|0];c.className="on"+(ok?"":" bad");clearTimeout(chT);chT=setTimeout(()=>c.className="",1000)}
+function beep(ok){cheer(ok);if(!sound)return;try{ctx=ctx||new (window.AudioContext||window.webkitAudioContext)();const o=ctx.createOscillator(),g=ctx.createGain();o.connect(g);g.connect(ctx.destination);const t=ctx.currentTime;o.type=ok?"triangle":"sawtooth";o.frequency.setValueAtTime(ok?660:200,t);if(ok)o.frequency.setValueAtTime(880,t+.09);g.gain.setValueAtTime(.12,t);g.gain.exponentialRampToValueAtTime(.001,t+.25);o.start(t);o.stop(t+.26)}catch(e){}}
+function speak(w){try{const u=new SpeechSynthesisUtterance(w.replace(/\(|\)|\.\.\./g,""));u.lang="en-US";u.rate=.85;speechSynthesis.cancel();speechSynthesis.speak(u)}catch(e){}}
+const SPK='<svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 9v6h4l5 4V5L7 9H3zm13.5 3A4.5 4.5 0 0 0 14 8v8a4.5 4.5 0 0 0 2.5-4zM14 3.2v2.1a7 7 0 0 1 0 13.4v2.1a9 9 0 0 0 0-17.6z"/></svg>';
+function add(n){S.pts+=n;save();hud()}
+function hud(){$("#pts").textContent=S.pts;$("#sts").textContent=Object.values(S.stars).reduce((a,b)=>a+b,0);$("#sts").parentNode.lastChild.textContent="/"+STARRED.length*3}
+const starStr=n=>[1,2,3].map(i=>`<span class="${i<=n?"on":""}">★</span>`).join("");
+function renderMap(){$("#map").innerHTML=ST.map((s,i)=>`<button class="st" data-i="${i}"><span class="ic"><svg><use href="#i-${s.ic}"/></svg></span><span class="no">${s.no}</span><h3>${s.t}</h3><span class="he">${s.he}</span>${s.id==="words"?"":`<span class="stars">${starStr(S.stars[s.id]||0)}</span>`}</button>`).join("")}
+let cur=null,timerId=null;
+let stationRun=0;
+function later(callback,delay){
+ const run=stationRun;
+ setTimeout(()=>{if(run===stationRun)callback()},delay);
+}
+function open(i){stationRun++;clearInterval(timerId);document.onkeydown=null;$("#tip").classList.add("hide");cur=ST[i];$("#home").classList.add("hide");$("#back").classList.remove("hide");const p=$("#play");p.classList.remove("hide");p.innerHTML="";cur.fn(p);window.scrollTo({top:0})}
+function home(){stationRun++;clearInterval(timerId);document.onkeydown=null;$("#tip").classList.add("hide");$("#play").classList.add("hide");$("#home").classList.remove("hide");$("#back").classList.add("hide");renderMap()}
+const BELT=["sushi","maki","tamago","oni","sushi","crane","maki","tamago","sushi","lantern"];
+function shell(p,title,en,he){const pet=[[8,30],[46,62],[88,40],[20,80]].map(([x,y],i)=>`<svg class="petal" style="left:${x}%;top:${y}%;animation-delay:${-i*2}s"><use href="#i-sakura"/></svg>`).join("");const belt=[...BELT,...BELT].map(k=>`<svg><use href="#i-${k}"/></svg>`).join("");
+p.innerHTML=`<div class="panel"><svg class="deco"><use href="#i-${cur.deco||"sakura"}"/></svg>${pet}<div class="ptop"><h2>${title}</h2><span class="pill">Score <b class="sc">0</b></span></div><div class="instr"><span>${en}</span><span class="he">${he}</span></div><div class="body"></div><div class="belt" aria-hidden="true"><div class="tr">${belt}</div></div></div>`;return p.querySelector(".body")}
+function confetti(){const c=["#ff8fa3","#ffc3d0","#8ec5ff","#ffd166","#7fd6a8"];for(let i=0;i<70;i++){const d=document.createElement("div");d.className="conf";d.style.left=Math.random()*100+"vw";d.style.background=c[i%5];d.style.animationDelay=Math.random()*.8+"s";d.style.animationDuration=1.8+Math.random()*1.4+"s";document.body.appendChild(d);setTimeout(()=>d.remove(),3500)}}
+function finish(ok,total,extra,label){clearInterval(timerId);const r=total?ok/total:0;const st=r>=.9?3:r>=.7?2:r>=.4?1:0;const id=cur.id;if(st>(S.stars[id]||0))S.stars[id]=st;add(st*10);save();hud();if(st>=2)confetti();
+const msg=st===3?"Excellent!":st===2?"Great job!":st===1?"Good try!":"Keep practising!";const heMsg=st===3?"מצוין! עבודה מושלמת":st===2?"כל הכבוד!":st===1?"ניסיון טוב – אפשר להשתפר":"כדאי לתרגל שוב";
+const o=document.createElement("div");o.className="res";o.innerHTML=`<div class="resc"><svg class="mas"><use href="#i-${st>=2?"oni":"daruma"}"/></svg><div class="stars">${starStr(st)}</div><h2>${msg}</h2><div class="he">${heMsg}</div><div style="font-weight:800;font-size:20px">${label||ok+" / "+total+" correct"}${extra||""}</div><div style="color:var(--soft)">Bonus: +${st*10} points</div><div class="row"><button class="btn" id="again">Play again</button><button class="btn ghost" id="tomap">Map</button></div></div>`;document.body.appendChild(o);o.querySelector("#again").onclick=()=>{o.remove();open(ST.indexOf(cur))};o.querySelector("#tomap").onclick=()=>{o.remove();home()};o.querySelector("#again").focus()}
+function setSc(p,v){const e=p.closest(".panel")?.querySelector(".sc")||$("#play .sc");if(e){e.textContent=v;e.classList.remove("pop");void e.offsetWidth;e.classList.add("pop")}}
+
+/* generic multiple-choice runner */
+function mcRun(b,items,render,opts){let i=0,ok=0,sc=0,streak=0;const n=items.length;
+ const step=()=>{if(i>=n){finish(ok,n,opts&&opts.extra?opts.extra(ok):"");return}const it=items[i];
+  b.innerHTML=`<div class="prog"><i style="width:${i/n*100}%"></i></div><div style="display:flex;justify-content:space-between;font-weight:800;color:var(--soft)"><span>Question ${i+1} / ${n}</span><span class="stk">${streak>=2?"Streak x"+streak:""}</span></div>${render.q(it)}<div class="opts">${it.o.map((x,k)=>`<button class="opt" data-k="${k}">${esc(x)}</button>`).join("")}</div><div class="fb"></div>`;
+  b.querySelectorAll(".opt").forEach(btn=>btn.onclick=()=>{const k=+btn.dataset.k,good=k===it.a;b.querySelectorAll(".opt").forEach(x=>x.disabled=true);b.querySelectorAll(".opt")[it.a].classList.add("ok");const fb=b.querySelector(".fb");
+   if(good){ok++;streak++;const g=10+(streak>=3?5:0);sc+=g;add(g);setSc(b,sc);beep(1);fb.className="fb ok";fb.textContent=(streak>=3?"Amazing streak! +15":"Correct! +10")}else{streak=0;btn.classList.add("bad","shake");beep(0);fb.className="fb bad";fb.textContent="Oops! The answer is: "+it.o[it.a]}
+   if(render.after)render.after(b,it,good);later(()=>{i++;step()},good?900:1700)})};step()}
+
+function match(p){const b=shell(p,"Word ↔ Meaning","Click an English word, then click its Hebrew meaning. Match all 6! N = noun, V = verb, ADJ = adjective","לחצו על מילה באנגלית ואז על הפירוש שלה בעברית. התאימו את כל 6 הזוגות! N = שם עצם, V = פועל, ADJ = שם תואר");let round=0,ok=0,miss=0,sc=0;const R=3;
+ const go=()=>{if(round>=R){finish(Math.max(0,R*6-miss),R*6);return}const set=shuf(W).slice(0,6);let sel=null,done=0;
+  b.innerHTML=`<div class="ptop"><span style="font-weight:800;color:var(--soft)">Round ${round+1} / ${R}</span></div><div class="prog"><i style="width:${round/R*100}%"></i></div><div class="cols"><div class="col">${shuf(set).map(w=>`<button class="m w" data-w="${esc(w[0])}">${esc(w[0])}</button>`).join("")}</div><div class="col">${shuf(set).map(w=>`<button class="m he" data-w="${esc(w[0])}">${esc(H(w))}</button>`).join("")}</div></div>`;
+  
+  b.querySelectorAll(".col").forEach((col,ci)=>col.querySelectorAll(".m").forEach(m=>m.onclick=()=>{if(m.classList.contains("done"))return;
+   if(!sel||sel.ci===ci){if(sel)sel.el.classList.remove("sel");sel={ci,el:m};m.classList.add("sel");if(ci===0)speak(m.dataset.w);return}
+   if(sel.el.dataset.w===m.dataset.w){[sel.el,m].forEach(x=>{x.classList.remove("sel");x.classList.add("done")});sel=null;done++;sc+=10;add(10);setSc(b,sc);beep(1);if(done===6){round++;later(go,700)}}
+   else{miss++;beep(0);m.classList.add("shake");sel.el.classList.add("shake");const a=sel.el;setTimeout(()=>{m.classList.remove("shake");a.classList.remove("shake")},400);sel.el.classList.remove("sel");sel=null}}))};go()}
+
+function pics(p){const b=shell(p,"Word ↔ Picture","Look at the picture and choose the right word. Click the speaker to hear it.","הסתכלו בתמונה ובחרו את המילה המתאימה.");
+ const items=shuf(PICS).slice(0,12).map(([w,e])=>{const o=shuf([w,...shuf(PICS.filter(x=>x[0]!==w)).slice(0,3).map(x=>x[0])]);return{e,w,o,a:o.indexOf(w)}});
+ mcRun(b,items,{q:it=>`<div class="big" role="img" aria-label="picture">${it.e}</div>`,after:(b,it)=>speak(it.w)})}
+
+function two(p){const b=shell(p,"Pick 1 of 2","Choose the correct word to complete the sentence.","בחרו את המילה הנכונה מבין שתי האפשרויות להשלמת המשפט.");
+ const items=shuf(TWO).slice(0,12).map(([s,a,c])=>{const o=shuf([a,c]);return{s,o,a:o.indexOf(a),w:a}});
+ mcRun(b,items,{q:it=>`<div class="sent">${esc(it.s).replace("___",'<span class="blank">&nbsp;</span>')}</div>`,after:(b,it)=>{b.querySelector(".blank").textContent=it.w}})}
+
+function bank(p){const b=shell(p,"Word Bank","Click a word from the bank, then click the blank. Two words are extra! Then press Check.","בחרו מילה ממחסן המילים ולחצו על המקום הריק במשפט. שימו לב: יש 2 מילים מיותרות! בסוף לחצו Check.");let si=0;
+ const go=()=>{const set=BANK[si];const words=shuf(set.words);let active=0;const fill=Array(set.s.length).fill(null);let selChip=null;
+  b.innerHTML=`<div class="tabs">${BANK.map((x,k)=>`<button class="${k===si?"on":""}" data-k="${k}">${x.name}</button>`).join("")}</div><div class="bank">${words.map((w,k)=>`<button class="chip" data-k="${k}">${esc(w)}</button>`).join("")}</div><div class="blist">${set.s.map(([s],k)=>{const [a,c]=s.split("___");return`<div class="bl">${esc(a)}<button class="slot" data-k="${k}" aria-label="blank ${k+1}"></button>${esc(c)}</div>`}).join("")}</div><div class="row"><button class="btn" id="chk">Check</button></div><div class="fb"></div>`;
+  b.querySelectorAll(".tabs button").forEach(t=>t.onclick=()=>{si=+t.dataset.k;go()});
+  const slots=[...b.querySelectorAll(".slot")],chips=[...b.querySelectorAll(".chip")];
+  const paint=()=>{slots.forEach((s,k)=>{s.textContent=fill[k]==null?"":words[fill[k]];s.classList.toggle("full",fill[k]!=null);s.classList.toggle("act",k===active)});chips.forEach((c,k)=>c.classList.toggle("used",fill.includes(k)))};
+  const place=k=>{if(active<0)active=fill.indexOf(null);if(active<0)return;fill[active]=k;active=fill.indexOf(null);paint()};
+  chips.forEach(c=>c.onclick=()=>{place(+c.dataset.k)});
+  slots.forEach(s=>s.onclick=()=>{const k=+s.dataset.k;s.classList.remove("ok","bad");if(fill[k]!=null)fill[k]=null;active=k;paint()});
+  paint();
+  b.querySelector("#chk").onclick=()=>{if(fill.includes(null)){const f=b.querySelector(".fb");f.className="fb bad";f.textContent="Fill in all the blanks first! / השלימו את כל המשפטים";beep(0);return}b.querySelectorAll("button").forEach(button=>button.disabled=true);let ok=0;slots.forEach((s,k)=>{const g=words[fill[k]]===set.s[k][1];s.classList.add(g?"ok":"bad");if(g)ok++});add(ok*10);setSc(b,ok*10);beep(ok===slots.length);later(()=>finish(ok,slots.length),1300)}};go()}
+
+function sort(p){const b=shell(p,"Noun · Verb · Adjective","Click a word (or drag it) and put it in the right box.","לחצו על מילה (או גררו אותה) ושימו אותה בקטגוריה הנכונה: שם עצם, פועל או שם תואר.");
+ const pick=k=>shuf(SORT[k]).slice(0,4).map(w=>[w,k]);const items=shuf([...pick("n"),...pick("v"),...pick("a")]);let sel=null,left=items.length,miss=0,sc=0;
+ b.innerHTML=`<div class="bank">${items.map(([w,k],i)=>`<button class="chip" draggable="true" data-i="${i}">${w}</button>`).join("")}</div><div class="buckets"><div class="bk n" data-k="n" role="button" tabindex="0"><h3>NOUN</h3><div class="he">שם עצם</div></div><div class="bk v" data-k="v" role="button" tabindex="0"><h3>VERB</h3><div class="he">פועל</div></div><div class="bk a" data-k="a" role="button" tabindex="0"><h3>ADJECTIVE</h3><div class="he">שם תואר</div></div></div><div class="fb"></div>`;
+ const fb=b.querySelector(".fb");
+ const drop=(i,bk)=>{const [w,k]=items[i];const chip=b.querySelector(`.chip[data-i="${i}"]`);if(!chip||chip.dataset.done)return;
+  if(bk.dataset.k===k){chip.dataset.done=1;chip.classList.remove("sel");chip.classList.add("ok");chip.draggable=false;bk.appendChild(chip);left--;sc+=10;add(10);setSc(b,sc);beep(1);fb.className="fb ok";fb.textContent="Correct! +10";if(!left)later(()=>finish(items.length-Math.min(miss,items.length),items.length),700)}
+  else{miss++;beep(0);chip.classList.add("shake");setTimeout(()=>chip.classList.remove("shake"),400);fb.className="fb bad";fb.textContent=`"${w}" is not a${bk.dataset.k==="a"?"n adjective":bk.dataset.k==="n"?" noun":" verb"}. Try again!`}sel=null;b.querySelectorAll(".chip.sel").forEach(c=>c.classList.remove("sel"))};
+ b.querySelectorAll(".chip").forEach(c=>{c.onclick=()=>{if(c.dataset.done)return;b.querySelectorAll(".chip.sel").forEach(x=>x.classList.remove("sel"));sel=+c.dataset.i;c.classList.add("sel");speak(c.textContent)};c.ondragstart=e=>{e.dataTransfer.setData("text/plain",c.dataset.i)}});
+ b.querySelectorAll(".bk").forEach(bk=>{bk.onclick=()=>{if(sel!=null)drop(sel,bk)};bk.onkeydown=e=>{if((e.key==="Enter"||e.key===" ")&&sel!=null){e.preventDefault();drop(sel,bk)}};bk.ondragover=e=>{e.preventDefault();bk.classList.add("over")};bk.ondragleave=()=>bk.classList.remove("over");bk.ondrop=e=>{e.preventDefault();bk.classList.remove("over");drop(+e.dataTransfer.getData("text/plain"),bk)}})}
+
+function read(p){const b=shell(p,"Reading: A Letter from Japan","Read Maya's letter. Click the pink words to see them in Hebrew. Then answer the questions.","קראו את המכתב של מאיה. לחצו על המילים המודגשות כדי לראות תרגום. אחר כך ענו על השאלות.");
+ const html=TEXT.replace(/<b>(.*?)<\/b>/g,(m,w)=>{const k=w.toLowerCase().replace(/!$/,"");const t=HE[k]||HE[w.toLowerCase()]||TIPS[k]||HE[k.replace(/s$/,"")]||HE[k.replace(/ed$/,"")]||HE[k.replace(/d$/,"")]||"";return `<button class="vw" data-t="${esc(t)}">${w}</button>`});
+ b.innerHTML=`<div class="row" style="justify-content:flex-start;margin:0 0 12px"><button class="btn indigo" id="rd">Listen to the letter</button></div><div class="passage">${html}</div><h3 style="margin:28px 0 4px;font-size:24px">Questions</h3><div class="he" style="color:var(--soft)">ענו על השאלות לפי המכתב</div><div id="qs"></div>`;
+ const tip=$("#tip");b.querySelectorAll(".vw").forEach(v=>{v.onclick=e=>{if(!v.dataset.t)return;tip.textContent=v.dataset.t;tip.classList.remove("hide");tip.className="tip he";const r=v.getBoundingClientRect();tip.style.left=Math.max(8,Math.min(innerWidth-200,r.left))+"px";tip.style.top=(r.top-42)+"px";clearTimeout(tip._t);tip._t=setTimeout(()=>tip.classList.add("hide"),2200);speak(v.textContent)}});
+ b.querySelector("#rd").onclick=()=>speak(b.querySelector(".passage").innerText);
+ let ans=0,ok=0,sc=0;b.querySelector("#qs").innerHTML=QS.map(([q,o],i)=>`<div class="q" data-i="${i}"><p>${i+1}. ${esc(q)}</p><div class="opts">${o.map((x,k)=>`<button class="opt" data-k="${k}">${esc(x)}</button>`).join("")}</div></div>`).join("");
+ b.querySelectorAll(".q").forEach(q=>{const [,,a]=QS[+q.dataset.i];q.querySelectorAll(".opt").forEach(btn=>btn.onclick=()=>{q.querySelectorAll(".opt").forEach(x=>x.disabled=true);q.querySelectorAll(".opt")[a].classList.add("ok");if(+btn.dataset.k===a){ok++;sc+=10;add(10);setSc(b,sc);beep(1)}else{btn.classList.add("bad","shake");beep(0)}ans++;if(ans===QS.length)later(()=>finish(ok,QS.length),900)})})}
+
+function speed(p){const b=shell(p,"Speed Challenge","60 seconds! Choose the Hebrew meaning as fast as you can. 3 in a row = bonus!","60 שניות! בחרו את התרגום הנכון כמה שיותר מהר. 3 תשובות נכונות ברצף = בונוס!");
+ b.innerHTML=`<div style="text-align:center"><div class="big" style="font-size:64px">⏱️</div><button class="btn" id="go" style="font-size:22px;padding:14px 34px">Start!</button></div>`;
+ b.querySelector("#go").onclick=()=>{let t=60,ok=0,tries=0,streak=0,sc=0;const deck=shuf(W);let i=0;
+  const q=()=>{const w=deck[i++%deck.length];const o=shuf([H(w),...shuf(W.filter(x=>x!==w)).slice(0,3).map(H)]);const a=o.indexOf(H(w));
+   b.querySelector("#sq").innerHTML=`<div class="sent" style="font-size:clamp(30px,5vw,44px)">${esc(w[0])}</div><div class="opts">${o.map((x,k)=>`<button class="opt he" data-k="${k}">${esc(x)}</button>`).join("")}</div>`;
+   b.querySelectorAll("#sq .opt").forEach(btn=>btn.onclick=()=>{tries++;if(+btn.dataset.k===a){ok++;streak++;const g=streak>=3?15:10;sc+=g;add(g);setSc(b,sc);beep(1);btn.classList.add("ok")}else{streak=0;beep(0);btn.classList.add("bad");b.querySelectorAll("#sq .opt")[a].classList.add("ok")}b.querySelector("#stk").textContent=streak>=2?"Streak x"+streak:"";b.querySelectorAll("#sq .opt").forEach(x=>x.disabled=true);later(q,+btn.dataset.k===a?250:800)})};
+  b.innerHTML=`<div style="display:flex;justify-content:space-between;align-items:center"><span class="timer" id="tm">60</span><span style="font-weight:800" id="stk"></span><span style="font-weight:800">Correct: <b id="okc">0</b></span></div><div class="prog"><i id="tb" style="width:100%"></i></div><div id="sq"></div>`;q();
+  const oc=new MutationObserver(()=>{b.querySelector("#okc").textContent=ok});oc.observe(b.querySelector("#sq"),{childList:true});
+  timerId=setInterval(()=>{t--;const tm=b.querySelector("#tm");if(!tm){clearInterval(timerId);return}tm.textContent=t;b.querySelector("#tb").style.width=t/60*100+"%";if(t<=0){clearInterval(timerId);oc.disconnect();finish(Math.min(ok,20),20,` <div style="font-size:15px;color:var(--soft)">(${ok} correct out of ${tries} – 20 correct = 3 stars)</div>`)}},1000)}}
+
+function finalq(p){const b=shell(p,"Mixed Final Quiz","15 questions of all kinds: meanings, pictures, sentences and word types.","15 שאלות מכל הסוגים: פירושים, תמונות, משפטים וסוגי מילים. בהצלחה!");
+ const mk=(q,ans,wrong,cls)=>{const o=shuf([ans,...wrong]);return{q,o,a:o.indexOf(ans),cls}};const items=[];
+ shuf(W).slice(0,4).forEach(w=>items.push(mk(`What does <b>${esc(w[0])}</b> mean?`,D(w),shuf(W.filter(x=>x!==w)).slice(0,3).map(D))));
+ shuf(PICS).slice(0,3).forEach(([w,e])=>items.push(mk(`<span style="font-size:70px">${e}</span><br>Which word matches the picture?`,w,shuf(PICS.filter(x=>x[0]!==w)).slice(0,3).map(x=>x[0]))));
+ shuf(TWO).slice(0,4).forEach(([s,a,c])=>items.push(mk(esc(s).replace("___","<span class=blank>&nbsp;</span>"),a,[c])));
+ const pos={n:"NOUN",v:"VERB",a:"ADJECTIVE"};["n","v","a","a"].forEach(k=>{const w=shuf(SORT[k])[0];items.push(mk(`<b>${w}</b> is a…`,pos[k],Object.values(pos).filter(x=>x!==pos[k])))});
+ mcRun(b,shuf(items),{q:it=>`<div class="sent">${it.q}</div>`})}
+
+function memory(p){const b=shell(p,"Memory Game","Find the pairs: an English word and its Hebrew meaning (or picture). Use as few moves as you can!","מצאו את הזוגות: מילה באנגלית והפירוש שלה בעברית (או תמונה). נסו להצליח בכמה שפחות תורות!");
+ const set=shuf(W).slice(0,6);const cards=shuf(set.flatMap((w,i)=>[{i,t:esc(w[0]),en:1},{i,t:PIC[w[0]]&&Math.random()<.5?`<span class="e">${PIC[w[0]]}</span>`:`<span class="he">${esc(H(w))}</span>`}]));
+ let open=[],moves=0,found=0,lock=false,sc=0;
+ b.innerHTML=`<div style="display:flex;justify-content:center;gap:10px;margin-bottom:14px;flex-wrap:wrap"><span class="pill">Moves <b id="mv">0</b></span><span class="pill">Pairs <b id="pr">0</b>/6</span></div><div class="mem">${cards.map((c,k)=>`<button class="card" data-k="${k}" aria-label="card"><span class="in"><span class="k"><svg><use href="#i-sakura"/></svg></span><span class="f">${c.t}</span></span></button>`).join("")}</div>`;
+ b.querySelectorAll(".card").forEach(el=>el.onclick=()=>{const c=cards[+el.dataset.k];if(lock||el.classList.contains("up")||el.classList.contains("done"))return;el.classList.add("up");if(c.en)speak(set[c.i][0]);open.push([el,c]);
+  if(open.length===2){moves++;b.querySelector("#mv").textContent=moves;const [[e1,c1],[e2,c2]]=open;open=[];
+   if(c1.i===c2.i){found++;b.querySelector("#pr").textContent=found;setTimeout(()=>{e1.classList.add("done");e2.classList.add("done");beep(1)},350);sc+=10;add(10);setSc(b,sc);if(found===6)later(()=>{const ok=moves<=9?6:moves<=12?5:moves<=16?3:1;finish(ok,6,"",`Found all 6 pairs in ${moves} moves`)},1100)}
+   else{lock=true;setTimeout(()=>{beep(0);e1.classList.remove("up");e2.classList.remove("up");lock=false},1000)}}})}
+
+function hang(p){const b=shell(p,"Save the Sushi!","Guess the word letter by letter. Every wrong letter – the onigiri eats one sushi! Save the sushi!","נחשו את המילה אות אחר אות. על כל טעות – האוניגירי אוכל סושי אחד! הצילו את הסושי!");
+ const pool=shuf(W.filter(w=>/^[a-z ]+$/i.test(w[0])&&w[0].replace(/ /g,"").length>=3)).slice(0,5);let r=0,won=0,sc=0;const SU=["sushi","maki","tamago","sushi","maki","tamago"];
+ const go=()=>{if(r>=pool.length){finish(won,pool.length);return}const w=pool[r],word=w[0].toLowerCase();const got=new Set(),bad=new Set();let lives=6,over=false;
+  const draw=()=>{b.querySelector(".hword").innerHTML=[...word].map(ch=>ch===" "?'<span class="sp"></span>':`<span>${got.has(ch)||over?ch:""}</span>`).join("");b.querySelectorAll(".plate .su").forEach((x,k)=>x.classList.toggle("gone",k>=lives))};
+  b.innerHTML=`<div style="display:flex;justify-content:space-between;font-weight:800;color:var(--soft)"><span>Word ${r+1} / ${pool.length}</span><span>Saved words: ${won}</span></div><div class="prog"><i style="width:${r/pool.length*100}%"></i></div><div class="plate">${SU.map(k=>`<svg class="su"><use href="#i-${k}"/></svg>`).join("")}<svg style="width:70px;height:70px;margin-inline-start:12px"><use href="#i-oni"/></svg></div><div class="hint">${PIC[w[0]]?`<span class="e">${PIC[w[0]]}</span>`:""}<span class="he">${esc(H(w))}</span><span style="color:var(--soft);font-size:16px">(${word.replace(/ /g,"").length} letters)</span></div><div class="hword"></div><div class="keys">${"abcdefghijklmnopqrstuvwxyz".split("").map(l=>`<button data-l="${l}">${l}</button>`).join("")}</div><div class="fb"></div><div class="row hide" id="nx"><button class="btn">Next word</button></div>`;
+  const guess=l=>{if(over||got.has(l)||bad.has(l))return;const kb=b.querySelector(`.keys button[data-l="${l}"]`);kb.disabled=true;
+   if(word.includes(l)){got.add(l);kb.classList.add("y");beep(1)}else{bad.add(l);lives--;kb.classList.add("n");beep(0)}
+   const done=[...word].every(ch=>ch===" "||got.has(ch));const fb=b.querySelector(".fb");
+   if(done||lives<=0){over=true;if(done){won++;const g=10+lives*2;sc+=g;add(g);setSc(b,sc);fb.className="fb ok";fb.textContent=`You saved ${lives} sushi! +${g}`;speak(w[0])}else{fb.className="fb bad";fb.textContent="Oh no! The word was: "+w[0]}b.querySelector("#nx").classList.remove("hide");b.querySelector("#nx button").focus()}draw()};
+  b.querySelectorAll(".keys button").forEach(k=>k.onclick=()=>guess(k.dataset.l));b.querySelector("#nx button").onclick=()=>{r++;go()};
+  document.onkeydown=e=>{if(cur&&cur.id==="hang"&&/^[a-z]$/i.test(e.key)&&!e.ctrlKey&&!e.metaKey)guess(e.key.toLowerCase())};draw()};go()}
+
+function words(p){const b=shell(p,"Word List & Flashcards","Flashcards: click a card to flip it and see the Hebrew meaning. List: all the words with a speaker.","כרטיסיות: לחצו על כרטיס כדי להפוך אותו ולראות את הפירוש בעברית. רשימה: כל המילים עם הקראה. N = שם עצם, V = פועל, ADJ = שם תואר");p.querySelector(".ptop .pill").remove();let part=0,view="cards";
+ const go=()=>{const q=b.querySelector("input").value||"";const list=W.filter(w=>(!part||w[3]===part)&&(w[0].toLowerCase().includes(q.toLowerCase())||w[1].includes(q)));const out=b.querySelector("#out");
+  if(view==="list"){out.innerHTML=`<div class="scroll"><table class="wl"><tbody>${list.map(w=>`<tr><td>${esc(w[0])}</td><td style="color:var(--soft)">${esc(D(w))}</td><td class="he">${esc(H(w))}</td><td style="width:52px"><button class="spk" data-w="${esc(w[0])}" aria-label="Listen to ${esc(w[0])}">${SPK}</button></td></tr>`).join("")||`<tr><td colspan="4">No words found.</td></tr>`}</tbody></table></div>`;out.querySelectorAll(".spk").forEach(s=>s.onclick=()=>speak(s.dataset.w));return}
+  out.innerHTML=`<div class="fc">${list.map(w=>{const pic=FPIC[w[0]];return`<button class="card" data-w="${esc(w[0])}" aria-label="${esc(w[0])} – flip"><span class="in"><span class="k">${esc(w[0])}<small>click to flip</small></span><span class="f">${pic?`<span class="e">${pic}</span>`:""}<span>${esc(w[1])}</span>${tag(w)?`<span class="ps">${tag(w).trim()}</span>`:""}</span></span></button>`}).join("")||"<p>No words found.</p>"}</div>`;
+  out.querySelectorAll(".card").forEach(c=>c.onclick=()=>{c.classList.toggle("up");if(c.classList.contains("up"))speak(c.dataset.w)})};
+ b.innerHTML=`<div class="tabs" style="justify-content:space-between"><div class="toggle"><button class="on" data-v="cards">Flashcards</button><button data-v="list">List</button></div><button class="btn ghost" id="flipall">Flip all</button></div><div class="tabs" id="parts"><button class="on" data-p="0">All (${W.length})</button><button data-p="1">Parts 1–3</button><button data-p="2">Parts 4–5</button><input type="search" placeholder="Search a word… / חיפוש" aria-label="Search"></div><div id="out"></div>`;
+ b.querySelectorAll("#parts button").forEach(t=>t.onclick=()=>{part=+t.dataset.p;b.querySelectorAll("#parts button").forEach(x=>x.classList.toggle("on",x===t));go()});
+ b.querySelectorAll(".toggle button").forEach(t=>t.onclick=()=>{view=t.dataset.v;b.querySelectorAll(".toggle button").forEach(x=>x.classList.toggle("on",x===t));b.querySelector("#flipall").classList.toggle("hide",view==="list");go()});
+ b.querySelector("#flipall").onclick=()=>{const cs=[...b.querySelectorAll(".fc .card")];const allUp=cs.every(c=>c.classList.contains("up"));cs.forEach(c=>c.classList.toggle("up",!allUp))};
+ b.querySelector("input").oninput=go;go()}
+
+$("#map").onclick=e=>{const s=e.target.closest(".st");if(s)open(+s.dataset.i)};
+$("#back").onclick=home;
+$("#snd").onclick=()=>{sound=!sound;$("#snd").textContent="Sound: "+(sound?"on":"off");$("#snd").setAttribute("aria-pressed",sound)};
+renderMap();hud();
+}
+</script>
+</body>
+</html>

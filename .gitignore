@@ -1,0 +1,12 @@
+# Deployment packages and checkout-local runtime files
+*.tar.gz
+*.tgz
+*.zip
+outputs/
+node_modules/
+.openai/.cache/
+.openai/.runtime/
+.env
+.env.*
+!.env.example
+*.log

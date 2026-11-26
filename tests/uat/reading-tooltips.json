@@ -1,0 +1,126 @@
+[
+  {
+    "token": "Dear",
+    "last": "- generic: יקרה (פתיחת מכתב)"
+  },
+  {
+    "token": "arrived",
+    "last": "- generic: הגענו"
+  },
+  {
+    "token": "island",
+    "last": "- generic: אי (N)"
+  },
+  {
+    "token": "million",
+    "last": "- generic: מיליון (N)"
+  },
+  {
+    "token": "visitors",
+    "last": "- generic: מבקרים"
+  },
+  {
+    "token": "decided",
+    "last": "- generic: החלטנו"
+  },
+  {
+    "token": "take a train",
+    "last": "- generic: לנסוע ברכבת (V)"
+  },
+  {
+    "token": "comfortable",
+    "last": "- generic: נוח (ADJ)"
+  },
+  {
+    "token": "directly",
+    "last": "- generic: ישירות"
+  },
+  {
+    "token": "mountain",
+    "last": "- generic: הר (N)"
+  },
+  {
+    "token": "famous",
+    "last": "- generic: מפורסם (ADJ)"
+  },
+  {
+    "token": "still",
+    "last": "- generic: עדיין"
+  },
+  {
+    "token": "took a picture",
+    "last": "- generic: צילמתי"
+  },
+  {
+    "token": "The cold",
+    "last": "- generic: הקור (N)"
+  },
+  {
+    "token": "nature",
+    "last": "- generic: טבע (N)"
+  },
+  {
+    "token": "take",
+    "last": "- generic: להוריד (take off)"
+  },
+  {
+    "token": "off",
+    "last": "- generic: להוריד (take off)"
+  },
+  {
+    "token": "invited",
+    "last": "- generic: הזמינו"
+  },
+  {
+    "token": "Both",
+    "last": "- generic: שניהם"
+  },
+  {
+    "token": "really",
+    "last": "- generic: באמת"
+  },
+  {
+    "token": "tasty",
+    "last": "- generic: טעים (ADJ)"
+  },
+  {
+    "token": "popular",
+    "last": "- generic: פופולרי, אהוד (ADJ)"
+  },
+  {
+    "token": "afraid",
+    "last": "- generic: מפחד (ADJ)"
+  },
+  {
+    "token": "almost",
+    "last": "- generic: כמעט"
+  },
+  {
+    "token": "catch",
+    "last": "- generic: לתפוס (רכבת)"
+  },
+  {
+    "token": "thousand",
+    "last": "- generic: אלף (N)"
+  },
+  {
+    "token": "return",
+    "last": "- generic: לחזור; להחזיר (V)"
+  },
+  {
+    "token": "miss",
+    "last": "- generic: להתגעגע; לפספס (V)"
+  },
+  {
+    "token": "all the time",
+    "last": "- generic: כל הזמן"
+  },
+  {
+    "token": "Take care!",
+    "last": "- generic: שמור על עצמך!"
+  },
+  {
+    "token": "Love",
+    "last": "- generic: אהבה; לאהוב (N/V)"
+  }
+]
