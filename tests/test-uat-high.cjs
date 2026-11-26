@@ -28,18 +28,39 @@ for(const bankSet of [0,1,2,3]){
  feedback.forEach((f,k)=>{assert.equal(f.textContent,(k===0?'לא נכון. התשובה הנכונה: ':'נכון. התשובה: ')+set.s[k][1]);assert.equal(f.dir,'rtl');assert.equal(slots[k].attributes['aria-describedby'],f.id)});
  const summary=run.b.querySelector('#bank-summary');assert.equal(summary.disabled,undefined);assert.equal(summary.focused,true);summary.onclick();assert.deepEqual(run.results[0],[slots.length-1,slots.length]);assert.equal(run.points.reduce((a,b)=>a+b,0),(slots.length-1)*10);
 }
-const read=runtime('read','speed');
+const read=runtime('read','finalq');
 read.b.querySelectorAll('.q').forEach((q,i)=>{const answer=data.QS[i][2],chosen=i===0?(answer+1)%data.QS[i][1].length:answer;q.querySelectorAll('.opt')[chosen].onclick();const f=q.querySelector('.answer-feedback');assert.equal(f.textContent,(i===0?'לא נכון. התשובה הנכונה: ':'נכון. התשובה: ')+data.QS[i][1][answer]);assert.equal(f.attributes.role,'status')});
 read.scheduled.forEach(f=>f());assert.equal(read.results.length,0,'all reading corrections remain until explicit summary');
 const summary=read.b.querySelector('#reading-summary');assert.equal(summary.classList.contains('hide'),false);assert.equal(summary.focused,true);summary.onclick();assert.deepEqual(read.results[0],[9,10]);
-// Render the real common result function with unequal counts and the memory override.
-for(const [correct,total,label,expected] of [[17,18,undefined,'17 תשובות נכונות מתוך 18'],[5,6,undefined,'5 תשובות נכונות מתוך 6'],[6,6,'מצאתם את כל 6 הזוגות ב־8 תורות','מצאתם את כל 6 הזוגות ב־8 תורות']]){
+// Render the real common result function with unequal counts .
+for(const [correct,total,label,expected] of [[17,18,undefined,'17 תשובות נכונות מתוך 18'],[5,6,undefined,'5 תשובות נכונות מתוך 6']]){
  const body=new Element(),context={document:{createElement:t=>new Element(t),body},timerId:null,clearInterval:()=>{},cur:{id:'test'},S:{stars:{}},add:()=>{},save:()=>{},hud:()=>{},confetti:()=>{},starStr:()=>'',open:()=>{},home:()=>{},ST:[],correct,total,label};
  vm.runInNewContext(js.slice(js.indexOf('function finish('),js.indexOf('function setSc('))+';finish(correct,total,"",label)',context);
  assert.ok(body.children[0].innerHTML.includes(expected));
 }
-// The final and sentence station must both continue to draw from the corrected shared TWO data.
-assert.equal(data.TWO.filter(row=>row[0]==='When the bus reached our stop, we got ___ and walked home.'&&row[1]==='off'&&row[2]==='on').length,1);
-for(const [name,next] of [['two','bank'],['finalq','memory']])assert.match(js.slice(js.indexOf('function '+name+'('),js.indexOf('function '+next+'(')),/shuf\(TWO\)/);
-assert.match(js,/finish\(Math.min\(ok,20\),20,[^\n]*`\$\{ok\} תשובות נכונות מתוך \$\{tries\}`\)/,'speed reports actual answers without changing its star target');
-console.log('PASS: UAT-01 shared unambiguous sentence; UAT-02 unequal-count result rendering and memory/speed semantics; UAT-04 all 4 banks and all reading questions retain explicit corrections until manual summary, focus, correct scoring.');
+
+// Both modes must use the same curated four-choice sentence data.
+assert.equal(data.TWO.filter(row=>row[0].includes('reached our stop')&&row[1]==='get off'&&row.includes('get on')).length,1);
+const captured=[];
+const sentenceContext={...data,shell:()=>new Element(),shuf:a=>[...a],esc:s=>s,mcRun:(b,items)=>captured.push(items)};
+vm.runInNewContext(js.slice(js.indexOf('function two('),js.indexOf('function bank('))+';two({})',sentenceContext);
+assert.equal(captured[0].length,12);
+captured[0].forEach((item,i)=>{assert.deepEqual(Array.from(item.o),Array.from(data.TWO[i].slice(1)));assert.equal(item.o[item.a],data.TWO[i][1])});
+Object.assign(sentenceContext,{PICS:[['mountain','mountain']],D:w=>w[1],SORT:{n:['mountain'],v:['arrive'],a:['afraid']}});
+vm.runInNewContext(js.slice(js.indexOf('function finalq('),js.indexOf('function words('))+';finalq({})',sentenceContext);
+assert.equal(captured[1].length,13); // fixture: 4 meanings + 1 picture + 4 sentences + 4 POS
+captured[1].slice(5,9).forEach((item,i)=>{assert.deepEqual(Array.from(item.o),Array.from(data.TWO[i].slice(1)));assert.equal(item.o[item.a],data.TWO[i][1])});
+// Rotate the shared pool to check every curated item through both real runners.
+for(let offset=0;offset<data.TWO.length;offset++){
+ const ordered=[...data.TWO.slice(offset),...data.TWO.slice(0,offset)];
+ sentenceContext.shuf=a=>a===data.TWO?ordered:[...a];
+ vm.runInNewContext('two({});finalq({})',sentenceContext);
+ const station=captured.at(-2)[0],final=captured.at(-1)[5];
+ for(const item of [station,final]){
+  assert.equal(item.o.length,4);
+  assert.deepEqual(Array.from(item.o),Array.from(data.TWO[offset].slice(1)));
+  assert.equal(item.o[item.a],data.TWO[offset][1]);
+ }
+}
+for(const removed of ['memory','hang','speed'])assert.ok(!js.includes('function '+removed+'('));
+console.log('PASS: UAT-01 shared unambiguous four-option sentences; UAT-02 unequal-count results; removed modes absent; UAT-04 bank/reading corrections await manual summary with focus and correct scoring.');

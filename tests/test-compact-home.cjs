@@ -1,0 +1,32 @@
+// Check the compact home against real station data and the real sound handler.
+const fs=require('node:fs'),vm=require('node:vm'),assert=require('node:assert/strict');
+const html=fs.readFileSync('index.html','utf8'),js=html.match(/<script>([\s\S]*?)<\/script>/)[1];
+const names=['words','match','pics','two','bank','sort','memory','hang','read','speed','finalq'];
+const context={...Object.fromEntries(names.map(n=>[n,()=>{}]))};
+vm.runInNewContext(js.slice(js.indexOf('const W='),js.indexOf('const STARRED='))+';globalThis.stations=ST;',context);
+const map={innerHTML:''},soundButton={attributes:{},setAttribute(k,v){this.attributes[k]=v}},stars={match:2};
+Object.assign(context,{S:{stars},$:s=>s==='#map'?map:soundButton});
+vm.runInNewContext(js.slice(js.indexOf('function renderMap('),js.indexOf('let cur='))+';renderMap();',Object.assign(context,{starStr:n=>'★'.repeat(n)}));
+assert.equal((map.innerHTML.match(/class="st"/g)||[]).length,8);
+context.stations.forEach((station,i)=>{
+ assert.ok(map.innerHTML.includes(`data-i="${i}"`),'station keeps its original activity index');
+ assert.ok(map.innerHTML.includes(`<h3>${station.he}</h3>`));
+ assert.ok(!map.innerHTML.includes(station.t),'no duplicate English card title');
+ assert.ok(!map.innerHTML.includes(station.no),'no redundant city or station number');
+});
+assert.ok(map.innerHTML.includes('aria-label="2 מתוך 3 כוכבים"'));
+assert.equal((map.innerHTML.match(/class="stars"/g)||[]).length,7);
+const toggle=js.slice(js.indexOf('$("#snd").onclick='),js.indexOf('const about='));
+vm.runInNewContext('let sound=true;'+toggle,context);
+soundButton.onclick();
+assert.equal(soundButton.attributes['aria-pressed'],false);
+assert.equal(soundButton.attributes['aria-label'],'הפעלת צלילי משחק');
+assert.ok(soundButton.innerHTML.includes('m16 9 6 6'));
+soundButton.onclick();
+assert.equal(soundButton.attributes['aria-pressed'],true);
+assert.equal(soundButton.attributes['aria-label'],'השתקת צלילי משחק');
+assert.ok(soundButton.innerHTML.includes('M15 8'));
+assert.ok(!toggle.includes('speechSynthesis'),'game sound control remains independent of speech');
+assert.ok(!html.includes('בחרו תחנה כדי להתחיל לתרגל'));
+assert.match(html,/<span class="unit" dir="ltr">UNIT 1<\/span>/);
+console.log('PASS: 8 retained station routes and Hebrew titles; 7 saved star ratings; compact header; icon/accessible sound state toggles without speech changes.');

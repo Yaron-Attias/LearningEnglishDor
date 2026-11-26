@@ -143,5 +143,86 @@ replace('<div id="sq"></div>','<div id="sq"></div><div class="fb" role="status" 
 replace('tries++;if(+btn.dataset.k===a)', 'tries++;b.querySelector(".fb").textContent=(+btn.dataset.k===a?"נכון. התשובה: ":"לא נכון. התשובה הנכונה: ")+o[a];if(+btn.dataset.k===a)');
 replace('const q=()=>{const w=deck[i++%deck.length];','const q=()=>{b.querySelector(".fb").textContent="";const w=deck[i++%deck.length];');
 replace('</style>','\n.answer-feedback{flex-basis:100%;font-size:17px;line-height:1.6;margin-block:6px;text-align:start;unicode-bidi:plaintext}\n</style>');
+// Approved compact home option 2 (26 November 2026); exercise content stays intact.
+html=html.replace(/<header>[\s\S]*?<\/header>/,`<header class="compact-header">
+ <div class="compact-title"><div class="title-art"><svg class="motif" aria-hidden="true"><use href="#i-fuji"/></svg><h1 lang="he" dir="rtl">מסע מילים ביפן</h1></div><span class="unit" dir="ltr">UNIT 1</span></div>
+</header>`);
+replace('<div class="lead"><h2>מפת התחנות</h2><span class="he" style="color:var(--soft)">בחרו תחנה כדי להתחיל לתרגל</span></div>','');
+replace('<section id="home">','<section id="home" aria-label="תחנות התרגול">');
+replace('<span class="no">${s.no.replace("Final Station", "תחנה אחרונה").replace("Station", "תחנה")}</span><h3>${s.he}</h3><span lang="en" dir="ltr">${s.t}</span>','<h3>${s.he}</h3>');
+replace('<span class="ic"><svg><use href="#i-${s.ic}"/></svg></span>','<span class="ic"><svg aria-hidden="true"><use href="#i-${s.ic}"/></svg></span>');
+replace('<span class="stars">${starStr(S.stars[s.id]||0)}</span>','<span class="stars" aria-label="${S.stars[s.id]||0} מתוך 3 כוכבים">${starStr(S.stars[s.id]||0)}</span>');
+const soundOn='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4V5Z"/><path d="M15 8a6 6 0 0 1 0 8M18 5a10 10 0 0 1 0 14"/></svg>';
+const soundOff='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4V5Z"/><path d="m16 9 6 6m0-6-6 6"/></svg>';
+replace('<button class="btn ghost" id="snd" aria-pressed="true">צלילי משחק: פעילים</button>',`<button class="btn ghost sound" id="snd" aria-pressed="true" aria-label="השתקת צלילי משחק" title="השתקת צלילי משחק">${soundOn}</button>`);
+replace('$("#snd").textContent="צלילי משחק: "+(sound?"פעילים":"כבויים");',`$("#snd").innerHTML=sound?${JSON.stringify(soundOn)}:${JSON.stringify(soundOff)};const label=sound?"השתקת צלילי משחק":"הפעלת צלילי משחק";$("#snd").setAttribute("aria-label",label);$("#snd").setAttribute("title",label);`);
+replace('</style>',`\n/* Compact title and two-column station grid, matching the approved option 2. */
+.compact-header{background:linear-gradient(130deg,#152c38,var(--bg))}
+.compact-title{max-width:1180px;margin:auto;padding:10px max(5vw,16px) 0;display:flex;align-items:center;justify-content:space-between;gap:8px;min-height:44px}
+.title-art{display:flex;align-items:center;gap:6px}.motif{width:34px;height:34px;flex:none}
+.compact-header h1{font-family:Rubik,Arial,sans-serif;font-size:23px;font-weight:800;line-height:1.2;white-space:nowrap;text-wrap:nowrap}
+.unit{font-size:12px;font-weight:800;letter-spacing:1px;color:var(--red);background:#253c32;border:1px solid #536d48;padding:5px 8px;border-radius:7px;white-space:nowrap;flex:none}
+.bar{position:static;border-bottom:1px solid var(--line);background:var(--bg)}
+.barin{padding-block:0;gap:12px;min-height:45px}.barin .pill{padding:0;background:transparent;border-radius:0;font-size:14px;font-weight:400;color:var(--soft);gap:4px}.barin .pill b{font-size:16px}.barin .grow{display:block}
+.barin .sound{display:grid;place-items:center;width:44px;height:44px;padding:10px;flex:none;background:transparent;border:0;box-shadow:none;border-radius:10px;margin-inline-start:auto}.sound svg{width:23px;height:23px}.barin .sound:hover{background:#1d3541}.sound[aria-pressed=false]{color:var(--bad)}
+main{padding-top:10px;padding-bottom:20px}
+.map{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.map .st{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;min-height:99px;padding:8px;border:1px solid var(--line);border-radius:13px;text-align:center}
+.map .st:hover{border-color:var(--red);transform:translateY(-2px)}
+.map .st .ic{width:32px;height:32px;background:transparent;border-radius:0;box-shadow:none;flex:none}.map .st .ic svg{width:32px;height:32px}
+.map .st h3{font-family:Rubik,Arial,sans-serif;font-size:14px;line-height:1.25;overflow-wrap:anywhere;text-wrap:wrap;max-width:100%}
+.map .st:first-child h3{color:var(--red)}.map .stars{margin:1px 0 0;font-size:14px;line-height:1;letter-spacing:1px;direction:ltr}
+.map .st:last-child:nth-child(odd){grid-column:1/-1;flex-direction:row;min-height:57px;gap:10px;text-align:start}.map .st:last-child:nth-child(odd) .stars{margin-inline-start:auto;flex:none}
+@media(min-width:701px){.map{grid-template-columns:repeat(4,minmax(0,1fr))}}
+@media(max-width:700px){.compact-title{padding-inline:12px}.barin{padding-inline:12px;gap:12px}.barin .grow{display:block}.barin .sound{padding:10px}.barin #back{flex-basis:100%;margin-bottom:8px}main{padding-inline:12px}.compact-header h1{font-size:21px}}
+@media(max-width:360px){.compact-header h1{font-size:19px}.unit{padding-inline:6px}.compact-title{gap:6px}.title-art{gap:4px}.barin{gap:10px}}
+@media(prefers-reduced-motion:reduce){.map .st{transition:none}.map .st:hover{transform:none}.map .st:hover .ic svg{animation:none}}
+</style>`);
+// Latest local revision: eight activities and four curated vocabulary choices.
+const sentences=[
+['Mount Fuji is a ___ mountain: people around the world know its name.','famous','comfortable','medical','tasty'],
+['My little brother hides under his blanket because he is ___ of the dark.','afraid','glad','full','correct'],
+['We have no car. To travel by rail, we will ___.','take a train','take a picture','tell a story','get the flu'],
+['What is the price? How much does this ticket ___?','cost','arrive','believe','collect'],
+['This bed is soft and ___. I sleep well on it.','comfortable','afraid','medical','tasty'],
+['Our bus is here. We must ___ now to ride to school.','get on','get off','come home','get the flu'],
+['The bus has reached our stop. We must ___ here and walk home.','get off','get on','take a train','get the flu'],
+['Both T-shirts look nice. I cannot ___ which one to buy.','decide','arrive','collect','raise'],
+['This song is ___: almost everyone likes listening to it.','popular','medical','afraid','full'],
+['Our plane will land in Tokyo at six. That is when we ___.','arrive','leave','collect','spell'],
+['He fell asleep at eight. It is ten now, and he is ___ sleeping.','still','below','instead','directly'],
+['I am sick today. I do not ___, so I must stay in bed.','feel well','get on','take a picture','tell a story'],
+['Dana looks after sick people in a hospital. She is a ___.','nurse','dictionary','keyboard','mountain'],
+['I will ___ my friends to my party by sending them invitations.','invite','collect','spell','raise'],
+['Do you ___ that ghosts are real?','believe','arrive','cost','collect'],
+['My brother has a stamp album. He likes to ___ stamps.','collect','arrive','spell','cost'],
+['Check your answer carefully so you do not ___.','make a mistake','get on','take a train','get the flu'],
+['This cake tastes wonderful. It is very ___!','tasty','medical','afraid','below'],
+['I broke your cup. I am very ___ about it.','sorry','tasty','full','medical'],
+['Here is my advice: you ___ wear a coat because it is cold.','should','below','several','almost'],
+['Our team beat all the other teams and won the ___.','competition','pocket','keyboard','surname'],
+['Grandma lives far away. I ___ her and wish she were here.','miss','spell','cost','arrive'],
+['Put your phone in the small ___ sewn into your coat.','pocket','mountain','competition','surname'],
+['Write the ___ at the top of the page: 20 November.','date','nature','nurse','keyboard'],
+['A thousand times a thousand is one ___.','million','thousand','several','both'],
+['This train goes ___ to Kyoto, without stopping anywhere else.','directly','below','almost','instead']
+];
+html=html.replace(/const TWO=\[[\s\S]*?;\s*const BANK=/,'const TWO='+JSON.stringify(sentences)+';\nconst BANK=');
+replace('Pick 1 of 2','Pick 1 of 4');
+replace('השלמת משפטים – 2 אפשרויות','השלמת משפטים – 4 אפשרויות');
+replace('מבין שתי האפשרויות','מבין ארבע האפשרויות');
+replace('.map(([s,a,c])=>{const o=shuf([a,c]);','.map(([s,a,...wrong])=>{const o=shuf([a,...wrong]);');
+replace('.forEach(([s,a,c])=>items.push(mk(esc(s).replace("___","<span class=blank>&nbsp;</span>"),a,[c])))','.forEach(([s,a,...wrong])=>items.push(mk(esc(s).replace("___","<span class=blank>&nbsp;</span>"),a,wrong)))');
+for(const id of ['memory','hang','speed'])html=html.replace(new RegExp(',?\\{id:"'+id+'",[^}]+\\}'),'');
+for(const [name,next] of [['speed','finalq'],['memory','hang'],['hang','words']]){
+ const start=html.indexOf('function '+name+'('),end=html.indexOf('function '+next+'(',start);
+ if(start<0||end<0)throw new Error('Missing removed activity '+name);
+ html=html.slice(0,start)+html.slice(end);
+}
+replace('באמצעות 11 תחנות לימוד','באמצעות 8 תחנות לימוד');
+replace('<b id="sts">0</b>/30','<b id="sts">0</b>/21');
+replace('Choose the תשובות נכונות word to complete the sentence.','Choose the correct word to complete the sentence.');
 fs.writeFileSync('index.html',html);
+fs.mkdirSync('dist',{recursive:true});
+fs.writeFileSync('dist/index.html',html);
 console.log('Wrote index.html; source preserved; added '+extra.length+' vocabulary entries.');

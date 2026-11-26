@@ -198,6 +198,28 @@ footer .btn{margin-top:12px}dialog{background:var(--card);color:var(--ink);borde
 @media(max-width:360px){main{padding-inline:12px}.panel{padding-inline:14px}.fc .card{height:164px}.mem{grid-template-columns:repeat(2,minmax(0,1fr))}.cols{gap:8px}.m{padding:9px 6px}.pill{padding:6px 10px}}
 
 .answer-feedback{flex-basis:100%;font-size:17px;line-height:1.6;margin-block:6px;text-align:start;unicode-bidi:plaintext}
+
+/* Compact title and two-column station grid, matching the approved option 2. */
+.compact-header{background:linear-gradient(130deg,#152c38,var(--bg))}
+.compact-title{max-width:1180px;margin:auto;padding:10px max(5vw,16px) 0;display:flex;align-items:center;justify-content:space-between;gap:8px;min-height:44px}
+.title-art{display:flex;align-items:center;gap:6px}.motif{width:34px;height:34px;flex:none}
+.compact-header h1{font-family:Rubik,Arial,sans-serif;font-size:23px;font-weight:800;line-height:1.2;white-space:nowrap;text-wrap:nowrap}
+.unit{font-size:12px;font-weight:800;letter-spacing:1px;color:var(--red);background:#253c32;border:1px solid #536d48;padding:5px 8px;border-radius:7px;white-space:nowrap;flex:none}
+.bar{position:static;border-bottom:1px solid var(--line);background:var(--bg)}
+.barin{padding-block:0;gap:12px;min-height:45px}.barin .pill{padding:0;background:transparent;border-radius:0;font-size:14px;font-weight:400;color:var(--soft);gap:4px}.barin .pill b{font-size:16px}.barin .grow{display:block}
+.barin .sound{display:grid;place-items:center;width:44px;height:44px;padding:10px;flex:none;background:transparent;border:0;box-shadow:none;border-radius:10px;margin-inline-start:auto}.sound svg{width:23px;height:23px}.barin .sound:hover{background:#1d3541}.sound[aria-pressed=false]{color:var(--bad)}
+main{padding-top:10px;padding-bottom:20px}
+.map{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.map .st{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;min-height:99px;padding:8px;border:1px solid var(--line);border-radius:13px;text-align:center}
+.map .st:hover{border-color:var(--red);transform:translateY(-2px)}
+.map .st .ic{width:32px;height:32px;background:transparent;border-radius:0;box-shadow:none;flex:none}.map .st .ic svg{width:32px;height:32px}
+.map .st h3{font-family:Rubik,Arial,sans-serif;font-size:14px;line-height:1.25;overflow-wrap:anywhere;text-wrap:wrap;max-width:100%}
+.map .st:first-child h3{color:var(--red)}.map .stars{margin:1px 0 0;font-size:14px;line-height:1;letter-spacing:1px;direction:ltr}
+.map .st:last-child:nth-child(odd){grid-column:1/-1;flex-direction:row;min-height:57px;gap:10px;text-align:start}.map .st:last-child:nth-child(odd) .stars{margin-inline-start:auto;flex:none}
+@media(min-width:701px){.map{grid-template-columns:repeat(4,minmax(0,1fr))}}
+@media(max-width:700px){.compact-title{padding-inline:12px}.barin{padding-inline:12px;gap:12px}.barin .grow{display:block}.barin .sound{padding:10px}.barin #back{flex-basis:100%;margin-bottom:8px}main{padding-inline:12px}.compact-header h1{font-size:21px}}
+@media(max-width:360px){.compact-header h1{font-size:19px}.unit{padding-inline:6px}.compact-title{gap:6px}.title-art{gap:4px}.barin{gap:10px}}
+@media(prefers-reduced-motion:reduce){.map .st{transition:none}.map .st:hover{transform:none}.map .st:hover .ic svg{animation:none}}
 </style>
 </head>
 <body>
@@ -216,43 +238,26 @@ footer .btn{margin-top:12px}dialog{background:var(--card);color:var(--ink);borde
 <symbol id="i-cat" viewBox="0 0 64 64"><ellipse cx="32" cy="59" rx="18" ry="3" fill="#000" opacity=".08"/><rect x="14" y="30" width="36" height="28" rx="14" fill="#fff" stroke="#eadfe6" stroke-width="2"/><path d="M12 12 L20 22 L14 28Z M52 12 L44 22 L50 28Z" fill="#fff" stroke="#eadfe6" stroke-width="2"/><circle cx="32" cy="27" r="17" fill="#fff" stroke="#eadfe6" stroke-width="2"/><path d="M25 26q2-3 4 0M35 26q2-3 4 0" stroke="#2b2533" stroke-width="2" fill="none"/><path d="M30 31q2 2 4 0" stroke="#2b2533" stroke-width="1.6" fill="none"/><circle cx="22" cy="31" r="2.6" fill="#ffb3c4"/><circle cx="42" cy="31" r="2.6" fill="#ffb3c4"/><path d="M16 40 Q32 46 48 40" stroke="#ff7f93" stroke-width="3" fill="none"/><circle cx="32" cy="45" r="4" fill="#ffc94d"/><path d="M50 22 q8-6 6 6" stroke="#eadfe6" stroke-width="5" fill="none" stroke-linecap="round"/></symbol>
 </defs></svg>
 <div id="cheer" aria-hidden="true"><span></span><svg><use href="#i-oni"/></svg></div>
-<header>
- <div class="hwrap">
-  <div>
-   <h1 lang="he" dir="rtl">מסע מילים ביפן</h1>
-   <div class="sub">All About Japan · Think About It · Unit 1 · תרגול אוצר מילים</div>
-   <p class="he">מסע אוצר מילים ביפן – עברו בין התחנות, צברו נקודות וכוכבים!</p>
-  </div>
-  <svg class="fuji" viewBox="0 0 520 230" aria-hidden="true">
-   <circle cx="390" cy="70" r="46" fill="#ff9fb2"/><circle cx="390" cy="70" r="62" fill="#ff9fb2" opacity=".2"/>
-   <g fill="#fff" opacity=".9"><ellipse cx="120" cy="60" rx="46" ry="14"/><ellipse cx="150" cy="50" rx="30" ry="14"/><ellipse cx="470" cy="120" rx="36" ry="10"/></g>
-   <path d="M40 230 L222 76 Q245 58 268 76 L470 230Z" fill="#a9bdf0"/>
-   <path d="M245 64 L268 76 L470 230 L340 230Z" fill="#8ea6e6"/>
-   <path d="M222 76 Q245 58 268 76 L305 108 L286 101 L270 114 L252 99 L235 114 L218 101 L185 108Z" fill="#fff"/>
-   <g fill="#f25a74"><rect x="56" y="140" width="80" height="9" rx="4"/><rect x="64" y="153" width="64" height="6"/><rect x="72" y="149" width="8" height="81"/><rect x="112" y="149" width="8" height="81"/></g>
-   <path d="M520 20 Q470 40 430 30" stroke="#8a5a4a" stroke-width="5" fill="none" stroke-linecap="round"/>
-   <g><use href="#i-sakura" x="440" y="14" width="30" height="30"/><use href="#i-sakura" x="478" y="26" width="24" height="24"/><use href="#i-sakura" x="416" y="34" width="20" height="20"/><use href="#i-sakura" x="300" y="150" width="18" height="18"/><use href="#i-sakura" x="170" y="190" width="16" height="16"/></g>
-   <use href="#i-oni" x="420" y="150" width="78" height="78"/>
-  </svg>
- </div>
+<header class="compact-header">
+ <div class="compact-title"><div class="title-art"><svg class="motif" aria-hidden="true"><use href="#i-fuji"/></svg><h1 lang="he" dir="rtl">מסע מילים ביפן</h1></div><span class="unit" dir="ltr">UNIT 1</span></div>
 </header>
 <div class="bar"><div class="barin">
  <span class="pill">נקודות <b id="pts">0</b></span>
- <span class="pill">כוכבים <span dir="ltr"><b id="sts">0</b>/30</span></span>
+ <span class="pill">כוכבים <span dir="ltr"><b id="sts">0</b>/21</span></span>
  <span class="grow"></span>
- <button class="btn ghost" id="snd" aria-pressed="true">צלילי משחק: פעילים</button>
+ <button class="btn ghost sound" id="snd" aria-pressed="true" aria-label="השתקת צלילי משחק" title="השתקת צלילי משחק"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4V5Z"/><path d="M15 8a6 6 0 0 1 0 8M18 5a10 10 0 0 1 0 14"/></svg></button>
  <button class="btn ghost hide" id="back">חזרה למפת התחנות</button>
 </div></div>
 <main>
- <section id="home">
-  <div class="lead"><h2>מפת התחנות</h2><span class="he" style="color:var(--soft)">בחרו תחנה כדי להתחיל לתרגל</span></div>
+ <section id="home" aria-label="תחנות התרגול">
+  
   <div class="map" id="map"></div>
  </section>
  <section id="play" class="hide"></section>
 </main>
 <p id="audio-status" class="audio-status" role="status"></p>
 <footer>נוצר על ידי <a href="https://github.com/Yaron-Attias" target="_blank" rel="noopener noreferrer"><bdi>Yaron-Attias</bdi></a> · לשימוש אישי ולימודי בלבד<br><button class="btn ghost" id="about-open">אודות, פרטיות ותנאי שימוש</button></footer>
-<dialog id="about" aria-labelledby="about-title"><h2 id="about-title">אודות האפליקציה</h2><p>תרגול אוצר מילים באנגלית בנושא יפן ובכיתה, באמצעות 11 תחנות לימוד. נוצר על ידי <a href="https://github.com/Yaron-Attias" target="_blank" rel="noopener noreferrer"><bdi>Yaron-Attias</bdi></a>.</p><h3>פרטיות ושמירה</h3><p>נקודות וכוכבים נשמרים בדפדפן במכשיר זה בלבד, תחת המפתח <bdi>jp-vocab</bdi>. האתר אינו שולח את ההתקדמות לשרת ואינו מסנכרן מכשירים. מחיקת נתוני האתר בהגדרות הדפדפן מוחקת את ההתקדמות. רענון מתחיל את המשימה מחדש. ההקראה משתמשת בשירות הדיבור של המכשיר או הדפדפן; עיבוד הטקסט עשוי להיות תלוי בשירות ובקול שנבחרו במכשיר.</p><h3>תנאי שימוש ומגבלות</h3><p>לשימוש אישי, לימודי ולא מסחרי. שימוש מסחרי או הפצת עותקים דורשים אישור מראש מהיוצר, בכפוף לרישיונות ולזכויות של צדדים שלישיים. ייתכנו טעויות בתוכן, בתרגום ובהקראה. הניקוד משקף את הסבב ואינו ציון בית־ספרי או הוכחה לשליטה בחומר. האתר מסופק במצבו הקיים ללא התחייבות לזמינות רציפה, עדכונים או תמיכה.</p><p>עודכן: 26 בנובמבר 2026</p><button class="btn" id="about-close">הבנתי, ממשיכים ללמוד</button></dialog>
+<dialog id="about" aria-labelledby="about-title"><h2 id="about-title">אודות האפליקציה</h2><p>תרגול אוצר מילים באנגלית בנושא יפן ובכיתה, באמצעות 8 תחנות לימוד. נוצר על ידי <a href="https://github.com/Yaron-Attias" target="_blank" rel="noopener noreferrer"><bdi>Yaron-Attias</bdi></a>.</p><h3>פרטיות ושמירה</h3><p>נקודות וכוכבים נשמרים בדפדפן במכשיר זה בלבד, תחת המפתח <bdi>jp-vocab</bdi>. האתר אינו שולח את ההתקדמות לשרת ואינו מסנכרן מכשירים. מחיקת נתוני האתר בהגדרות הדפדפן מוחקת את ההתקדמות. רענון מתחיל את המשימה מחדש. ההקראה משתמשת בשירות הדיבור של המכשיר או הדפדפן; עיבוד הטקסט עשוי להיות תלוי בשירות ובקול שנבחרו במכשיר.</p><h3>תנאי שימוש ומגבלות</h3><p>לשימוש אישי, לימודי ולא מסחרי. שימוש מסחרי או הפצת עותקים דורשים אישור מראש מהיוצר, בכפוף לרישיונות ולזכויות של צדדים שלישיים. ייתכנו טעויות בתוכן, בתרגום ובהקראה. הניקוד משקף את הסבב ואינו ציון בית־ספרי או הוכחה לשליטה בחומר. האתר מסופק במצבו הקיים ללא התחייבות לזמינות רציפה, עדכונים או תמיכה.</p><p>עודכן: 26 בנובמבר 2026</p><button class="btn" id="about-close">הבנתי, ממשיכים ללמוד</button></dialog>
 <div id="tip" class="tip hide"></div>
 
 <script>
@@ -269,7 +274,7 @@ const HE=Object.fromEntries(W.map(w=>[w[0].toLowerCase(),H(w)]));
 const PICS=[["island","🏝️"],["mountain","🏔️"],["nature","🌳"],["nurse","🧑‍⚕️"],["message","💬"],["kiss","💋"],["the cold","🥶"],["get the flu","🤒"],["take a picture","📸"],["take a train","🚆"],["competition","🏆"],["afraid","😱"],["glad","😊"],["clever","🧠"],["tasty","😋"],["sorry","😔"],["date","📅"],["medical","🩺"],["invite","💌"],["love","❤️"],["welcome","👋"],["come home","🏠"],["cost","🏷️"],["perfect","💯"],["tell a story","📖"],["pocket","👖"],["team","🧑‍🤝‍🧑🧑‍🤝‍🧑"]];
 const PIC=Object.fromEntries(PICS);
 const FPIC={...PIC,"order":"🍜","visitor":"🧳","see":"👀","comfortable":"🛋️","decide":"🤔","excellent":"🌟","make a mistake":"❌","get better":"🩹","against":"🆚","hit":"⚾","catch (a train)":"🚉","million":"1,000,000","thousand":"1,000","collect":"🐚","full":"🈵","mountain":"🗻","feel well":"💪","Take care!":"🤗","return":"🔙","miss":"🥺"};
-const TWO=[["Mount Fuji is the most ___ mountain in Japan.","famous","afraid"],["My little brother is ___ of the dark.","afraid","clever"],["Hurry up! We need to ___ the 8:00 train.","catch","cost"],["How much does this ticket ___?","cost","decide"],["This bed is very ___. I sleep well on it.","comfortable","medical"],["In Japan, you ___ your shoes off before you go into a house.","take","get"],["When the bus reached our stop, we got ___ and walked home.","off","on"],["I can't ___ which T-shirt to buy.","decide","arrive"],["Sushi is very ___ in Japan. Everybody eats it.","popular","afraid"],["Our plane will ___ in Tokyo at 6:00 p.m.","arrive","invite"],["It's 10 o'clock and he is ___ sleeping.","still","only"],["I didn't ___ well yesterday, so I stayed in bed.","feel","keep"],["Dana is a ___. She works in a hospital.","nurse","visitor"],["I want to ___ all my friends to my party.","invite","believe"],["Do you ___ in ghosts?","believe","collect"],["My brother likes to ___ stamps.","collect","miss"],["Oops! I made a ___ in my homework.","mistake","message"],["This cake is ___! Can I have more?","tasty","medical"],["I'm ___ I'm late.","sorry","full"],["You ___ wear a coat. It's cold outside.","should","could"],["Our team won the ___!","competition","pocket"],["I ___ my grandma. I haven't seen her for a long time.","miss","kiss"],["Put your phone in your ___.","pocket","reason"],["Write the ___ at the top of the page: 20 November.","date","nature"],["Tokyo has more than 14 ___ people.","million","thousand"],["The train goes ___ to Kyoto. It doesn't stop.","directly","several"]];
+const TWO=[["Mount Fuji is a ___ mountain: people around the world know its name.","famous","comfortable","medical","tasty"],["My little brother hides under his blanket because he is ___ of the dark.","afraid","glad","full","correct"],["We have no car. To travel by rail, we will ___.","take a train","take a picture","tell a story","get the flu"],["What is the price? How much does this ticket ___?","cost","arrive","believe","collect"],["This bed is soft and ___. I sleep well on it.","comfortable","afraid","medical","tasty"],["Our bus is here. We must ___ now to ride to school.","get on","get off","come home","get the flu"],["The bus has reached our stop. We must ___ here and walk home.","get off","get on","take a train","get the flu"],["Both T-shirts look nice. I cannot ___ which one to buy.","decide","arrive","collect","raise"],["This song is ___: almost everyone likes listening to it.","popular","medical","afraid","full"],["Our plane will land in Tokyo at six. That is when we ___.","arrive","leave","collect","spell"],["He fell asleep at eight. It is ten now, and he is ___ sleeping.","still","below","instead","directly"],["I am sick today. I do not ___, so I must stay in bed.","feel well","get on","take a picture","tell a story"],["Dana looks after sick people in a hospital. She is a ___.","nurse","dictionary","keyboard","mountain"],["I will ___ my friends to my party by sending them invitations.","invite","collect","spell","raise"],["Do you ___ that ghosts are real?","believe","arrive","cost","collect"],["My brother has a stamp album. He likes to ___ stamps.","collect","arrive","spell","cost"],["Check your answer carefully so you do not ___.","make a mistake","get on","take a train","get the flu"],["This cake tastes wonderful. It is very ___!","tasty","medical","afraid","below"],["I broke your cup. I am very ___ about it.","sorry","tasty","full","medical"],["Here is my advice: you ___ wear a coat because it is cold.","should","below","several","almost"],["Our team beat all the other teams and won the ___.","competition","pocket","keyboard","surname"],["Grandma lives far away. I ___ her and wish she were here.","miss","spell","cost","arrive"],["Put your phone in the small ___ sewn into your coat.","pocket","mountain","competition","surname"],["Write the ___ at the top of the page: 20 November.","date","nature","nurse","keyboard"],["A thousand times a thousand is one ___.","million","thousand","several","both"],["This train goes ___ to Kyoto, without stopping anywhere else.","directly","below","almost","instead"]];
 const BANK=[
 {name:"Set 1",words:["island","mountain","visitors","thousand","glad","Welcome","reason","team"],s:[["Japan has thousands of islands. The biggest ___ is Honshu.","island"],["Mount Fuji is a very high ___.","mountain"],["Millions of ___ come to Japan every year.","visitors"],["This temple is more than a ___ years old.","thousand"],["I'm so ___ to see you again!","glad"],["___ to Tokyo! We hope you enjoy your visit.","Welcome"]]},
 {name:"Set 2",words:["leave","return","directly","nature","reason","order","hit","still"],s:[["What time does the train ___ the station?","leave"],["We will ___ home next Sunday.","return"],["This train goes ___ to Kyoto. It doesn't stop anywhere.","directly"],["I love ___: trees, rivers and flowers.","nature"],["What is the ___ for your trip? I want to learn Japanese.","reason"],["Can I ___ a bowl of ramen, please?","order"]]},
@@ -284,7 +289,7 @@ const TEXT=`<p><b>Dear</b> Noa,</p>
 <p><b>Take care!</b><br><b>Love</b>,<br>Maya</p>`;
 const TIPS={dear:"יקרה (פתיחת מכתב)",visitors:"מבקרים",decided:"החלטנו",arrived:"הגענו",invited:"הזמינו",took:"צילמתי (took a picture)","took a picture":"צילמתי",take:"להוריד (take off)",off:"להוריד (take off)",catch:"לתפוס (רכבת)"};
 const QS=[["Where is Maya now?",["In Japan","In Israel","In Korea"],0],["How did Maya get to Mount Fuji?",["By bus","By train","By plane"],1],["What is still on the top of Mount Fuji?",["Snow","A temple","Visitors"],0],["What do people in Japan do before they go into a house?",["They take a picture","They take their shoes off","They order sushi"],1],["True or false: Maya was afraid to try new food.",["True","False"],1],["True or false: The train stopped at many stations on the way to Mount Fuji.",["True","False"],1],["Who invited Maya's family for dinner?",["A Japanese family","Noa","A nurse"],0],["Where will Maya go tomorrow?",["Home","To Kyoto","To an island"],1],["In the text, \"comfortable\" means…",["fast","nice and relaxing","very cold"],1],["Why does Maya write to Noa?",["She misses her and wants to tell about Japan","She is sick","She wants to order food"],0]];
-const ST=[{id:"words",no:"Station 0 · Tokyo",t:"Word List & Flashcards",he:"רשימת מילים וכרטיסיות",ic:"lantern",deco:"lantern",fn:words},{id:"match",no:"Station 1 · Yokohama",t:"Word ↔ Meaning",he:"התאמת מילה לפירוש",ic:"crane",deco:"crane2",fn:match},{id:"pics",no:"Station 2 · Mount Fuji",t:"Word ↔ Picture",he:"התאמת מילה לתמונה",ic:"fuji",deco:"sushi",fn:pics},{id:"two",no:"Station 3 · Nagoya",t:"Pick 1 of 2",he:"השלמת משפטים – 2 אפשרויות",ic:"fan",deco:"fan",fn:two},{id:"bank",no:"Station 4 · Kyoto",t:"Word Bank",he:"השלמת משפטים ממחסן מילים",ic:"sushi",deco:"maki",fn:bank},{id:"sort",no:"Station 5 · Nara",t:"Noun · Verb · Adjective",he:"מיון מילים לקטגוריות",ic:"maki",deco:"tamago",fn:sort},{id:"memory",no:"Station 6 · Sapporo",t:"Memory Game",he:"משחק זיכרון",ic:"sakura",deco:"crane",fn:memory},{id:"hang",no:"Station 7 · Kobe",t:"Save the Sushi!",he:"איש תלוי – נחשו את המילה",ic:"tamago",deco:"maki",fn:hang},{id:"read",no:"Station 8 · Osaka",t:"Reading: A Letter from Japan",he:"הבנת הנקרא",ic:"crane2",deco:"crane",fn:read},{id:"speed",no:"Station 9 · Hiroshima",t:"Speed Challenge",he:"אתגר מהירות – 60 שניות",ic:"daruma",deco:"daruma",fn:speed},{id:"fix",no:"Final Station · Okinawa",t:"Mixed Final Quiz",he:"מבחן מסכם – כל סוגי השאלות",ic:"cat",deco:"cat",fn:finalq}];
+const ST=[{id:"words",no:"Station 0 · Tokyo",t:"Word List & Flashcards",he:"רשימת מילים וכרטיסיות",ic:"lantern",deco:"lantern",fn:words},{id:"match",no:"Station 1 · Yokohama",t:"Word ↔ Meaning",he:"התאמת מילה לפירוש",ic:"crane",deco:"crane2",fn:match},{id:"pics",no:"Station 2 · Mount Fuji",t:"Word ↔ Picture",he:"התאמת מילה לתמונה",ic:"fuji",deco:"sushi",fn:pics},{id:"two",no:"Station 3 · Nagoya",t:"Pick 1 of 4",he:"השלמת משפטים – 4 אפשרויות",ic:"fan",deco:"fan",fn:two},{id:"bank",no:"Station 4 · Kyoto",t:"Word Bank",he:"השלמת משפטים ממחסן מילים",ic:"sushi",deco:"maki",fn:bank},{id:"sort",no:"Station 5 · Nara",t:"Noun · Verb · Adjective",he:"מיון מילים לקטגוריות",ic:"maki",deco:"tamago",fn:sort},{id:"read",no:"Station 8 · Osaka",t:"Reading: A Letter from Japan",he:"הבנת הנקרא",ic:"crane2",deco:"crane",fn:read},{id:"fix",no:"Final Station · Okinawa",t:"Mixed Final Quiz",he:"מבחן מסכם – כל סוגי השאלות",ic:"cat",deco:"cat",fn:finalq}];
 const STARRED=ST.filter(s=>s.id!=="words");
 let S={pts:0,stars:{}};try{const stored=JSON.parse(localStorage.getItem("jp-vocab"));if(stored&&Number.isFinite(stored.pts)&&stored.pts>=0&&stored.stars&&typeof stored.stars==="object"){S.pts=stored.pts;for(const s of STARRED){const n=stored.stars[s.id];if(Number.isInteger(n)&&n>=0&&n<=3)S.stars[s.id]=n}}}catch(e){}
 const save=()=>{try{localStorage.setItem("jp-vocab",JSON.stringify(S))}catch(e){}};
@@ -300,7 +305,7 @@ const SPK='<svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 9v6h4l5 4V5L
 function add(n){S.pts+=n;save();hud()}
 function hud(){$("#pts").textContent=S.pts;$("#sts").textContent=Object.values(S.stars).reduce((a,b)=>a+b,0);$("#sts").parentNode.lastChild.textContent="/"+STARRED.length*3}
 const starStr=n=>[1,2,3].map(i=>`<span class="${i<=n?"on":""}">★</span>`).join("");
-function renderMap(){$("#map").innerHTML=ST.map((s,i)=>`<button class="st" data-i="${i}"><span class="ic"><svg><use href="#i-${s.ic}"/></svg></span><span class="no">${s.no.replace("Final Station", "תחנה אחרונה").replace("Station", "תחנה")}</span><h3>${s.he}</h3><span lang="en" dir="ltr">${s.t}</span>${s.id==="words"?"":`<span class="stars">${starStr(S.stars[s.id]||0)}</span>`}</button>`).join("")}
+function renderMap(){$("#map").innerHTML=ST.map((s,i)=>`<button class="st" data-i="${i}"><span class="ic"><svg aria-hidden="true"><use href="#i-${s.ic}"/></svg></span><h3>${s.he}</h3>${s.id==="words"?"":`<span class="stars" aria-label="${S.stars[s.id]||0} מתוך 3 כוכבים">${starStr(S.stars[s.id]||0)}</span>`}</button>`).join("")}
 let cur=null,timerId=null;
 let stationRun=0;
 function later(callback,delay){
@@ -339,8 +344,8 @@ function pics(p){const b=shell(p,"Word ↔ Picture","Look at the picture and cho
  const items=shuf(PICS).slice(0,12).map(([w,e])=>{const o=shuf([w,...shuf(PICS.filter(x=>x[0]!==w)).slice(0,3).map(x=>x[0])]);return{e,w,o,a:o.indexOf(w)}});
  mcRun(b,items,{q:it=>`<div class="big" role="img" aria-label="תמונה לשאלה">${it.e}</div>`,after:(b,it)=>speak(it.w)})}
 
-function two(p){const b=shell(p,"Pick 1 of 2","Choose the תשובות נכונות word to complete the sentence.","בחרו את המילה הנכונה מבין שתי האפשרויות להשלמת המשפט.");
- const items=shuf(TWO).slice(0,12).map(([s,a,c])=>{const o=shuf([a,c]);return{s,o,a:o.indexOf(a),w:a}});
+function two(p){const b=shell(p,"Pick 1 of 4","Choose the correct word to complete the sentence.","בחרו את המילה הנכונה מבין ארבע האפשרויות להשלמת המשפט.");
+ const items=shuf(TWO).slice(0,12).map(([s,a,...wrong])=>{const o=shuf([a,...wrong]);return{s,o,a:o.indexOf(a),w:a}});
  mcRun(b,items,{q:it=>`<div class="sent" dir="ltr" lang="en">${esc(it.s).replace("___",'<span class="blank">&nbsp;</span>')}</div>`,after:(b,it)=>{b.querySelector(".blank").textContent=it.w}})}
 
 function bank(p){const b=shell(p,"Word Bank","Click a word from the bank, then click the blank. Two words are extra! Then press Check.","בחרו מקום ריק במשפט ואז מילה ממחסן המילים. שימו לב: יש 2 מילים מיותרות! לחיצה על מילה ממלאת את המקום הפעיל. להחלפה לחצו על מקום שכבר מולא ובחרו מילה אחרת. בסוף לחצו על ״בדיקה״.");let si=0;
@@ -373,44 +378,13 @@ function read(p){const b=shell(p,"Reading: A Letter from Japan","Read Maya's let
  const summary=document.createElement("button");summary.className="btn hide";summary.id="reading-summary";summary.textContent="קראתי את התיקונים — הצגת סיכום";b.appendChild(summary);let ans=0,ok=0,sc=0;summary.onclick=()=>{summary.disabled=true;finish(ok,QS.length)};b.querySelector("#qs").innerHTML=QS.map(([q,o],i)=>`<div class="q" dir="ltr" lang="en" data-i="${i}"><p>${i+1}. ${esc(q)}</p><div class="opts">${o.map((x,k)=>`<button class="opt" data-k="${k}">${esc(x)}</button>`).join("")}</div></div>`).join("");
  b.querySelectorAll(".q").forEach(q=>{const [,options,a]=QS[+q.dataset.i];const feedback=document.createElement("div");feedback.className="answer-feedback";feedback.dir="rtl";feedback.lang="he";feedback.setAttribute("role","status");q.appendChild(feedback);q.querySelectorAll(".opt").forEach(btn=>btn.onclick=()=>{q.querySelectorAll(".opt").forEach(x=>x.disabled=true);q.querySelectorAll(".opt")[a].classList.add("ok");if(+btn.dataset.k===a){ok++;sc+=10;add(10);setSc(b,sc);beep(1)}else{btn.classList.add("bad","shake");beep(0)}feedback.textContent=(+btn.dataset.k===a?"נכון. התשובה: ":"לא נכון. התשובה הנכונה: ")+options[a];ans++;if(ans===QS.length){summary.classList.remove("hide");summary.focus()}})})}
 
-function speed(p){const b=shell(p,"Speed Challenge","60 seconds! Choose the Hebrew meaning as fast as you can. 3 in a row = bonus!","60 שניות! בחרו את התרגום הנכון כמה שיותר מהר. 3 תשובות נכונות ברצף = בונוס!");
- b.innerHTML=`<div style="text-align:center"><div class="big" style="font-size:64px">⏱️</div><button class="btn" id="go" style="font-size:22px;padding:14px 34px">מתחילים!</button></div>`;
- b.querySelector("#go").onclick=()=>{let t=60,ok=0,tries=0,streak=0,sc=0;const deck=shuf(W);let i=0;
-  const q=()=>{b.querySelector(".fb").textContent="";const w=deck[i++%deck.length];const o=shuf([H(w),...shuf(W.filter(x=>x!==w)).slice(0,3).map(H)]);const a=o.indexOf(H(w));
-   b.querySelector("#sq").innerHTML=`<div class="sent" style="font-size:clamp(30px,5vw,44px)">${esc(w[0])}</div><div class="opts">${o.map((x,k)=>`<button class="opt he" data-k="${k}">${esc(x)}</button>`).join("")}</div>`;
-   b.querySelectorAll("#sq .opt").forEach(btn=>btn.onclick=()=>{tries++;b.querySelector(".fb").textContent=(+btn.dataset.k===a?"נכון. התשובה: ":"לא נכון. התשובה הנכונה: ")+o[a];if(+btn.dataset.k===a){ok++;streak++;const g=streak>=3?15:10;sc+=g;add(g);setSc(b,sc);beep(1);btn.classList.add("ok")}else{streak=0;beep(0);btn.classList.add("bad");b.querySelectorAll("#sq .opt")[a].classList.add("ok")}b.querySelector("#stk").textContent=streak>=2?"רצף ×"+streak:"";b.querySelectorAll("#sq .opt").forEach(x=>x.disabled=true);later(q,+btn.dataset.k===a?250:800)})};
-  b.innerHTML=`<div style="display:flex;justify-content:space-between;align-items:center"><span class="timer" id="tm">60</span><span style="font-weight:800" id="stk"></span><span style="font-weight:800">תשובות נכונות: <b id="okc">0</b></span></div><div class="prog"><i id="tb" style="width:100%"></i></div><div id="sq"></div><div class="fb" role="status" aria-live="polite"></div>`;q();
-  const oc=new MutationObserver(()=>{b.querySelector("#okc").textContent=ok});oc.observe(b.querySelector("#sq"),{childList:true});
-  timerId=setInterval(()=>{t--;const tm=b.querySelector("#tm");if(!tm){clearInterval(timerId);return}tm.textContent=t;b.querySelector("#tb").style.width=t/60*100+"%";if(t<=0){clearInterval(timerId);oc.disconnect();finish(Math.min(ok,20),20,` <div style="font-size:15px;color:var(--soft)">(${ok} תשובות נכונות מתוך ${tries}; 20 תשובות נכונות מזכות ב־3 כוכבים)</div>`,`${ok} תשובות נכונות מתוך ${tries}`)}},1000)}}
-
 function finalq(p){const b=shell(p,"Mixed Final Quiz","15 questions of all kinds: meanings, pictures, sentences and word types.","15 שאלות מכל הסוגים: פירושים, תמונות, משפטים וסוגי מילים. בהצלחה!");
  const mk=(q,ans,wrong,cls)=>{const o=shuf([ans,...wrong]);return{q,o,a:o.indexOf(ans),cls}};const items=[];
  shuf(W).slice(0,4).forEach(w=>items.push(mk(`מה המשמעות של <b dir="ltr" lang="en">${esc(w[0])}</b>?`,D(w),shuf(W.filter(x=>x!==w)).slice(0,3).map(D))));
  shuf(PICS).slice(0,3).forEach(([w,e])=>items.push(mk(`<span style="font-size:70px">${e}</span><br>איזו מילה מתאימה לתמונה?`,w,shuf(PICS.filter(x=>x[0]!==w)).slice(0,3).map(x=>x[0]))));
- shuf(TWO).slice(0,4).forEach(([s,a,c])=>items.push(mk(esc(s).replace("___","<span class=blank>&nbsp;</span>"),a,[c])));
+ shuf(TWO).slice(0,4).forEach(([s,a,...wrong])=>items.push(mk(esc(s).replace("___","<span class=blank>&nbsp;</span>"),a,wrong)));
  const pos={n:"NOUN",v:"VERB",a:"ADJECTIVE"};["n","v","a","a"].forEach(k=>{const w=shuf(SORT[k])[0];items.push(mk(`מהו חלק הדיבר של <b dir="ltr" lang="en">${w}</b>?`,pos[k],Object.values(pos).filter(x=>x!==pos[k])))});
  mcRun(b,shuf(items),{q:it=>`<div class="sent" dir="ltr" lang="en">${it.q}</div>`})}
-
-function memory(p){const b=shell(p,"Memory Game","Find the pairs: an English word and its Hebrew meaning (או תמונה). Use as few moves as you can!","מצאו את הזוגות: מילה באנגלית והפירוש שלה בעברית (או תמונה). נסו להצליח בכמה שפחות תורות!");
- const set=shuf(W).slice(0,6);const cards=shuf(set.flatMap((w,i)=>[{i,t:esc(w[0]),en:1},{i,t:PIC[w[0]]&&Math.random()<.5?`<span class="e">${PIC[w[0]]}</span>`:`<span class="he">${esc(H(w))}</span>`}]));
- let open=[],moves=0,found=0,lock=false,sc=0;
- b.innerHTML=`<div style="display:flex;justify-content:center;gap:10px;margin-bottom:14px;flex-wrap:wrap"><span class="pill">תורות <b id="mv">0</b></span><span class="pill">זוגות <span dir="ltr"><b id="pr">0</b>/6</span></span></div><div class="mem">${cards.map((c,k)=>`<button class="card" data-k="${k}" aria-label="כרטיס זיכרון"><span class="in"><span class="k"><svg><use href="#i-sakura"/></svg></span><span class="f">${c.t}</span></span></button>`).join("")}</div>`;
- b.querySelectorAll(".card").forEach(el=>el.onclick=()=>{const c=cards[+el.dataset.k];if(lock||el.classList.contains("up")||el.classList.contains("done"))return;el.classList.add("up");if(c.en)speak(set[c.i][0]);open.push([el,c]);
-  if(open.length===2){moves++;b.querySelector("#mv").textContent=moves;const [[e1,c1],[e2,c2]]=open;open=[];
-   if(c1.i===c2.i){found++;b.querySelector("#pr").textContent=found;setTimeout(()=>{e1.classList.add("done");e2.classList.add("done");beep(1)},350);sc+=10;add(10);setSc(b,sc);if(found===6)later(()=>{const ok=moves<=9?6:moves<=12?5:moves<=16?3:1;finish(ok,6,"",`מצאתם את כל 6 הזוגות ב־${moves} תורות`)},1100)}
-   else{lock=true;setTimeout(()=>{beep(0);e1.classList.remove("up");e2.classList.remove("up");lock=false},1000)}}})}
-
-function hang(p){const b=shell(p,"Save the Sushi!","Guess the word letter by letter. Every wrong letter – the onigiri eats one sushi! Save the sushi!","נחשו את המילה אות אחר אות. על כל טעות – האוניגירי אוכל סושי אחד! הצילו את הסושי!");
- const pool=shuf(W.filter(w=>/^[a-z ]+$/i.test(w[0])&&w[0].replace(/ /g,"").length>=3)).slice(0,5);let r=0,won=0,sc=0;const SU=["sushi","maki","tamago","sushi","maki","tamago"];
- const go=()=>{if(r>=pool.length){finish(won,pool.length);return}const w=pool[r],word=w[0].toLowerCase();const got=new Set(),bad=new Set();let lives=6,over=false;
-  const draw=()=>{b.querySelector(".hword").innerHTML=[...word].map(ch=>ch===" "?'<span class="sp"></span>':`<span>${got.has(ch)||over?ch:""}</span>`).join("");b.querySelectorAll(".plate .su").forEach((x,k)=>x.classList.toggle("gone",k>=lives))};
-  b.innerHTML=`<div style="display:flex;justify-content:space-between;font-weight:800;color:var(--soft)"><span>מילה <bdi>${r+1} / ${pool.length}</bdi></span><span>מילים שפוענחו: ${won}</span></div><div class="prog"><i style="width:${r/pool.length*100}%"></i></div><div class="plate">${SU.map(k=>`<svg class="su"><use href="#i-${k}"/></svg>`).join("")}<svg style="width:70px;height:70px;margin-inline-start:12px"><use href="#i-oni"/></svg></div><div class="hint">${PIC[w[0]]?`<span class="e">${PIC[w[0]]}</span>`:""}<span class="he">${esc(H(w))}</span><span style="color:var(--soft);font-size:16px">(${word.replace(/ /g,"").length} אותיות)</span></div><div class="hword" dir="ltr" lang="en"></div><div class="keys" dir="ltr" lang="en">${"abcdefghijklmnopqrstuvwxyz".split("").map(l=>`<button data-l="${l}">${l}</button>`).join("")}</div><div class="fb" role="status" aria-live="polite"></div><div class="row hide" id="nx"><button class="btn">למילה הבאה</button></div>`;
-  const guess=l=>{if(over||got.has(l)||bad.has(l))return;const kb=b.querySelector(`.keys button[data-l="${l}"]`);kb.disabled=true;
-   if(word.includes(l)){got.add(l);kb.classList.add("y");beep(1)}else{bad.add(l);lives--;kb.classList.add("n");beep(0)}
-   const done=[...word].every(ch=>ch===" "||got.has(ch));const fb=b.querySelector(".fb");
-   if(done||lives<=0){over=true;if(done){won++;const g=10+lives*2;sc+=g;add(g);setSc(b,sc);fb.className="fb ok";fb.textContent=`הצלתם ${lives} סושי! +${g}`;speak(w[0])}else{fb.className="fb bad";fb.textContent="המילה הייתה: "+w[0]}b.querySelector("#nx").classList.remove("hide");b.querySelector("#nx button").focus()}draw()};
-  b.querySelectorAll(".keys button").forEach(k=>k.onclick=()=>guess(k.dataset.l));b.querySelector("#nx button").onclick=()=>{r++;go()};
-  document.onkeydown=e=>{if(cur&&cur.id==="hang"&&/^[a-z]$/i.test(e.key)&&!e.ctrlKey&&!e.metaKey)guess(e.key.toLowerCase())};draw()};go()}
 
 function words(p){const b=shell(p,"Word List & Flashcards","Flashcards: click a card to flip it and see the Hebrew meaning. List: all the words with a speaker.","כרטיסיות: לחצו על כרטיס כדי להפוך אותו ולראות את הפירוש בעברית. רשימה: כל המילים עם הקראה. N = שם עצם, V = פועל, ADJ = שם תואר");p.querySelector(".ptop .pill").remove();let part=0,view="cards";
  const go=()=>{const q=b.querySelector("input").value||"";const list=W.filter(w=>(!part||w[3]===part)&&(w[0].toLowerCase().includes(q.toLowerCase())||w[1].includes(q)));const out=b.querySelector("#out");
@@ -425,7 +399,7 @@ function words(p){const b=shell(p,"Word List & Flashcards","Flashcards: click a 
 
 $("#map").onclick=e=>{const s=e.target.closest(".st");if(s)open(+s.dataset.i)};
 $("#back").onclick=home;
-$("#snd").onclick=()=>{sound=!sound;$("#snd").textContent="צלילי משחק: "+(sound?"פעילים":"כבויים");$("#snd").setAttribute("aria-pressed",sound)};
+$("#snd").onclick=()=>{sound=!sound;$("#snd").innerHTML=sound?"<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M11 5 6 9H3v6h3l5 4V5Z\"/><path d=\"M15 8a6 6 0 0 1 0 8M18 5a10 10 0 0 1 0 14\"/></svg>":"<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M11 5 6 9H3v6h3l5 4V5Z\"/><path d=\"m16 9 6 6m0-6-6 6\"/></svg>";const label=sound?"השתקת צלילי משחק":"הפעלת צלילי משחק";$("#snd").setAttribute("aria-label",label);$("#snd").setAttribute("title",label);$("#snd").setAttribute("aria-pressed",sound)};
 const about=document.getElementById("about");document.getElementById("about-open").onclick=()=>about.showModal();document.getElementById("about-close").onclick=()=>about.close();
 renderMap();hud();
 }
