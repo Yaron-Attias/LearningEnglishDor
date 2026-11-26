@@ -37,8 +37,9 @@ const extra=[
 ['conversation','שיחה','a talk between people',4,'N'],['correct','נכון','right; without a mistake',4,'ADJ'],['describe','לתאר','to say what something is like',4,'V'],['document','מסמך','a file or paper with information',4,'N'],['example','דוגמה','something that shows what you mean',4,'N'],['first name','שם פרטי','the personal name used before a surname',4,'N'],['folder','תיקייה','a place to keep documents together',4,'N'],['guess','לנחש','to give an answer without being sure',4,'V'],['keyboard','מקלדת','the keys used to type on a computer',4,'N'],['quiz','בוחן','a short test',4,'N'],['surname','שם משפחה','the name shared by members of a family',4,'N'],['task','משימה','a piece of work to do',4,'N']];
 replace('W.forEach(w=>',`W.push(...${JSON.stringify(extra.map(w=>w.slice(0,4)))});\nObject.assign(POS,${JSON.stringify(Object.fromEntries(extra.map(w=>[w[0],w[4]])))});\nW.forEach(w=>`);
 replace('<html lang="en">','<html lang="he" dir="rtl">');
-replace('<h1>All About Japan</h1>','<h1 lang="en" dir="ltr">All About Japan</h1>');
-replace('Think About It · Unit 1 · Vocabulary Journey','Think About It · Unit 1 · תרגול אוצר מילים');
+replace('<title>All About Japan – Vocabulary</title>','<title>מסע מילים ביפן</title>');
+replace('<h1>All About Japan</h1>','<h1 lang="he" dir="rtl">מסע מילים ביפן</h1>');
+replace('Think About It · Unit 1 · Vocabulary Journey','All About Japan · Think About It · Unit 1 · תרגול אוצר מילים');
 replace('Points <b','נקודות <b');replace('Stars <b','כוכבים <b');
 replace('<b id="sts">0</b>/30','<span dir="ltr"><b id="sts">0</b>/30</span>');
 replace('Sound: on','צלילי משחק: פעילים');replace('Back to map','חזרה למפת התחנות');replace('Choose a station','מפת התחנות');
